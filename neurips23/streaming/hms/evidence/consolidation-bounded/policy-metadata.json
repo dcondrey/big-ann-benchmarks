@@ -1,0 +1,659 @@
+{
+  "kind": "static metadata, not performance or RSS measurements",
+  "variants": [
+    {
+      "policy": {
+        "delta_ratio": 1.0,
+        "deleted_ratio": 0.3,
+        "min_delta": 100000
+      },
+      "consolidations": 25,
+      "total_rebuilt_rows": 100831752,
+      "max_array_bound": {
+        "step": 673,
+        "operation": "delete",
+        "live": 8421866,
+        "old_base_slots": 6229778,
+        "old_base_dead": 1870177,
+        "delta_allocated": 4062265,
+        "delta_live": 4062265,
+        "prepared_graph_plus_old_delta_bytes": 6740241396
+      },
+      "triggers": [
+        {
+          "step": 9,
+          "operation": "insert",
+          "live": 100025,
+          "old_base_slots": 0,
+          "old_base_dead": 0,
+          "delta_allocated": 100025,
+          "delta_live": 100025,
+          "prepared_graph_plus_old_delta_bytes": 108427100
+        },
+        {
+          "step": 21,
+          "operation": "insert",
+          "live": 448898,
+          "old_base_slots": 100025,
+          "old_base_dead": 0,
+          "delta_allocated": 348873,
+          "delta_live": 348873,
+          "prepared_graph_plus_old_delta_bytes": 431791732
+        },
+        {
+          "step": 31,
+          "operation": "insert",
+          "live": 1239816,
+          "old_base_slots": 448898,
+          "old_base_dead": 0,
+          "delta_allocated": 790918,
+          "delta_live": 790918,
+          "prepared_graph_plus_old_delta_bytes": 1097964440
+        },
+        {
+          "step": 59,
+          "operation": "insert",
+          "live": 2643083,
+          "old_base_slots": 1239816,
+          "old_base_dead": 0,
+          "delta_allocated": 1403267,
+          "delta_live": 1403267,
+          "prepared_graph_plus_old_delta_bytes": 2185682804
+        },
+        {
+          "step": 159,
+          "operation": "delete",
+          "live": 4143922,
+          "old_base_slots": 2643083,
+          "old_base_dead": 886593,
+          "delta_allocated": 2387432,
+          "delta_live": 2387432,
+          "prepared_graph_plus_old_delta_bytes": 3529454928
+        },
+        {
+          "step": 209,
+          "operation": "delete",
+          "live": 2900501,
+          "old_base_slots": 4143922,
+          "old_base_dead": 1243421,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1554668536
+        },
+        {
+          "step": 231,
+          "operation": "delete",
+          "live": 2027795,
+          "old_base_slots": 2900501,
+          "old_base_dead": 872706,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1086898120
+        },
+        {
+          "step": 255,
+          "operation": "delete",
+          "live": 1405549,
+          "old_base_slots": 2027795,
+          "old_base_dead": 622246,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 753374264
+        },
+        {
+          "step": 283,
+          "operation": "insert",
+          "live": 3109157,
+          "old_base_slots": 1405549,
+          "old_base_dead": 0,
+          "delta_allocated": 1703608,
+          "delta_live": 1703608,
+          "prepared_graph_plus_old_delta_bytes": 2600085336
+        },
+        {
+          "step": 335,
+          "operation": "insert",
+          "live": 6230108,
+          "old_base_slots": 3109157,
+          "old_base_dead": 0,
+          "delta_allocated": 3120951,
+          "delta_live": 3120951,
+          "prepared_graph_plus_old_delta_bytes": 5049619036
+        },
+        {
+          "step": 427,
+          "operation": "delete",
+          "live": 6266345,
+          "old_base_slots": 6230108,
+          "old_base_dead": 1886945,
+          "delta_allocated": 1923182,
+          "delta_live": 1923182,
+          "prepared_graph_plus_old_delta_bytes": 4412664656
+        },
+        {
+          "step": 463,
+          "operation": "delete",
+          "live": 4370609,
+          "old_base_slots": 6266345,
+          "old_base_dead": 1895736,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 2342646424
+        },
+        {
+          "step": 489,
+          "operation": "delete",
+          "live": 3052105,
+          "old_base_slots": 4370609,
+          "old_base_dead": 1318504,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1635928280
+        },
+        {
+          "step": 579,
+          "operation": "insert",
+          "live": 6229778,
+          "old_base_slots": 3052105,
+          "old_base_dead": 409250,
+          "delta_allocated": 3586923,
+          "delta_live": 3586923,
+          "prepared_graph_plus_old_delta_bytes": 5304794812
+        },
+        {
+          "step": 673,
+          "operation": "delete",
+          "live": 8421866,
+          "old_base_slots": 6229778,
+          "old_base_dead": 1870177,
+          "delta_allocated": 4062265,
+          "delta_live": 4062265,
+          "prepared_graph_plus_old_delta_bytes": 6740241396
+        },
+        {
+          "step": 717,
+          "operation": "delete",
+          "live": 5868774,
+          "old_base_slots": 8421866,
+          "old_base_dead": 2553092,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 3145662864
+        },
+        {
+          "step": 745,
+          "operation": "delete",
+          "live": 4000195,
+          "old_base_slots": 5868774,
+          "old_base_dead": 1868579,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 2144104520
+        },
+        {
+          "step": 881,
+          "operation": "insert",
+          "live": 6969764,
+          "old_base_slots": 4000195,
+          "old_base_dead": 1177289,
+          "delta_allocated": 4146858,
+          "delta_live": 4146858,
+          "prepared_graph_plus_old_delta_bytes": 6008271688
+        },
+        {
+          "step": 957,
+          "operation": "delete",
+          "live": 6132470,
+          "old_base_slots": 6969764,
+          "old_base_dead": 2216656,
+          "delta_allocated": 1379362,
+          "delta_live": 1379362,
+          "prepared_graph_plus_old_delta_bytes": 4042894296
+        },
+        {
+          "step": 1003,
+          "operation": "delete",
+          "live": 4259551,
+          "old_base_slots": 6132470,
+          "old_base_dead": 1872919,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 2283119336
+        },
+        {
+          "step": 1017,
+          "operation": "delete",
+          "live": 2775418,
+          "old_base_slots": 4259551,
+          "old_base_dead": 1484133,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1487624048
+        },
+        {
+          "step": 1079,
+          "operation": "insert",
+          "live": 5335531,
+          "old_base_slots": 2775418,
+          "old_base_dead": 218924,
+          "delta_allocated": 2779037,
+          "delta_live": 2779037,
+          "prepared_graph_plus_old_delta_bytes": 4382756892
+        },
+        {
+          "step": 1173,
+          "operation": "delete",
+          "live": 5957180,
+          "old_base_slots": 5335531,
+          "old_base_dead": 1644484,
+          "delta_allocated": 2266133,
+          "delta_live": 2266133,
+          "prepared_graph_plus_old_delta_bytes": 4434889364
+        },
+        {
+          "step": 1223,
+          "operation": "delete",
+          "live": 4109781,
+          "old_base_slots": 5957180,
+          "old_base_dead": 1847399,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 2202842616
+        },
+        {
+          "step": 1265,
+          "operation": "delete",
+          "live": 2833531,
+          "old_base_slots": 4109781,
+          "old_base_dead": 1276250,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1518772616
+        }
+      ]
+    },
+    {
+      "policy": {
+        "delta_ratio": 1.0,
+        "deleted_ratio": 0.6,
+        "min_delta": 100000
+      },
+      "consolidations": 13,
+      "total_rebuilt_rows": 48936196,
+      "max_array_bound": {
+        "step": 925,
+        "operation": "delete",
+        "live": 7587942,
+        "old_base_slots": 5927803,
+        "old_base_dead": 3670138,
+        "delta_allocated": 5526220,
+        "delta_live": 5330277,
+        "prepared_graph_plus_old_delta_bytes": 7095505472
+      },
+      "triggers": [
+        {
+          "step": 9,
+          "operation": "insert",
+          "live": 100025,
+          "old_base_slots": 0,
+          "old_base_dead": 0,
+          "delta_allocated": 100025,
+          "delta_live": 100025,
+          "prepared_graph_plus_old_delta_bytes": 108427100
+        },
+        {
+          "step": 21,
+          "operation": "insert",
+          "live": 448898,
+          "old_base_slots": 100025,
+          "old_base_dead": 0,
+          "delta_allocated": 348873,
+          "delta_live": 348873,
+          "prepared_graph_plus_old_delta_bytes": 431791732
+        },
+        {
+          "step": 31,
+          "operation": "insert",
+          "live": 1239816,
+          "old_base_slots": 448898,
+          "old_base_dead": 0,
+          "delta_allocated": 790918,
+          "delta_live": 790918,
+          "prepared_graph_plus_old_delta_bytes": 1097964440
+        },
+        {
+          "step": 59,
+          "operation": "insert",
+          "live": 2643083,
+          "old_base_slots": 1239816,
+          "old_base_dead": 0,
+          "delta_allocated": 1403267,
+          "delta_live": 1403267,
+          "prepared_graph_plus_old_delta_bytes": 2185682804
+        },
+        {
+          "step": 183,
+          "operation": "delete",
+          "live": 3350245,
+          "old_base_slots": 2643083,
+          "old_base_dead": 1680270,
+          "delta_allocated": 2387432,
+          "delta_live": 2387432,
+          "prepared_graph_plus_old_delta_bytes": 3104044056
+        },
+        {
+          "step": 305,
+          "operation": "insert",
+          "live": 4789669,
+          "old_base_slots": 3350245,
+          "old_base_dead": 1944696,
+          "delta_allocated": 3384120,
+          "delta_live": 3384120,
+          "prepared_graph_plus_old_delta_bytes": 4421760344
+        },
+        {
+          "step": 463,
+          "operation": "delete",
+          "live": 4370609,
+          "old_base_slots": 4789669,
+          "old_base_dead": 2886366,
+          "delta_allocated": 3363621,
+          "delta_live": 2467306,
+          "prepared_graph_plus_old_delta_bytes": 4185910732
+        },
+        {
+          "step": 591,
+          "operation": "insert",
+          "live": 7108942,
+          "old_base_slots": 4370609,
+          "old_base_dead": 1727754,
+          "delta_allocated": 4466087,
+          "delta_live": 4466087,
+          "prepared_graph_plus_old_delta_bytes": 6257808588
+        },
+        {
+          "step": 713,
+          "operation": "delete",
+          "live": 5927803,
+          "old_base_slots": 7108942,
+          "old_base_dead": 4364240,
+          "delta_allocated": 3183101,
+          "delta_live": 3183101,
+          "prepared_graph_plus_old_delta_bytes": 4921641756
+        },
+        {
+          "step": 925,
+          "operation": "delete",
+          "live": 7587942,
+          "old_base_slots": 5927803,
+          "old_base_dead": 3670138,
+          "delta_allocated": 5526220,
+          "delta_live": 5330277,
+          "prepared_graph_plus_old_delta_bytes": 7095505472
+        },
+        {
+          "step": 1017,
+          "operation": "delete",
+          "live": 2775418,
+          "old_base_slots": 7587942,
+          "old_base_dead": 4812524,
+          "delta_allocated": 0,
+          "delta_live": 0,
+          "prepared_graph_plus_old_delta_bytes": 1487624048
+        },
+        {
+          "step": 1079,
+          "operation": "insert",
+          "live": 5335531,
+          "old_base_slots": 2775418,
+          "old_base_dead": 218924,
+          "delta_allocated": 2779037,
+          "delta_live": 2779037,
+          "prepared_graph_plus_old_delta_bytes": 4382756892
+        },
+        {
+          "step": 1255,
+          "operation": "delete",
+          "live": 3258215,
+          "old_base_slots": 5335531,
+          "old_base_dead": 3278772,
+          "delta_allocated": 2266133,
+          "delta_live": 1201456,
+          "prepared_graph_plus_old_delta_bytes": 2988244124
+        }
+      ]
+    },
+    {
+      "policy": {
+        "delta_ratio": 1.0,
+        "deleted_ratio": 0.9,
+        "min_delta": 100000
+      },
+      "consolidations": 10,
+      "total_rebuilt_rows": 38495874,
+      "max_array_bound": {
+        "step": 619,
+        "operation": "insert",
+        "live": 9195551,
+        "old_base_slots": 7288266,
+        "old_base_dead": 4970377,
+        "delta_allocated": 7417720,
+        "delta_live": 6877662,
+        "prepared_graph_plus_old_delta_bytes": 8993725896
+      },
+      "triggers": [
+        {
+          "step": 9,
+          "operation": "insert",
+          "live": 100025,
+          "old_base_slots": 0,
+          "old_base_dead": 0,
+          "delta_allocated": 100025,
+          "delta_live": 100025,
+          "prepared_graph_plus_old_delta_bytes": 108427100
+        },
+        {
+          "step": 21,
+          "operation": "insert",
+          "live": 448898,
+          "old_base_slots": 100025,
+          "old_base_dead": 0,
+          "delta_allocated": 348873,
+          "delta_live": 348873,
+          "prepared_graph_plus_old_delta_bytes": 431791732
+        },
+        {
+          "step": 31,
+          "operation": "insert",
+          "live": 1239816,
+          "old_base_slots": 448898,
+          "old_base_dead": 0,
+          "delta_allocated": 790918,
+          "delta_live": 790918,
+          "prepared_graph_plus_old_delta_bytes": 1097964440
+        },
+        {
+          "step": 59,
+          "operation": "insert",
+          "live": 2643083,
+          "old_base_slots": 1239816,
+          "old_base_dead": 0,
+          "delta_allocated": 1403267,
+          "delta_live": 1403267,
+          "prepared_graph_plus_old_delta_bytes": 2185682804
+        },
+        {
+          "step": 267,
+          "operation": "insert",
+          "live": 1665152,
+          "old_base_slots": 2643083,
+          "old_base_dead": 1879658,
+          "delta_allocated": 2647035,
+          "delta_live": 901727,
+          "prepared_graph_plus_old_delta_bytes": 2343096652
+        },
+        {
+          "step": 289,
+          "operation": "insert",
+          "live": 3472031,
+          "old_base_slots": 1665152,
+          "old_base_dead": 0,
+          "delta_allocated": 1806879,
+          "delta_live": 1806879,
+          "prepared_graph_plus_old_delta_bytes": 2851178308
+        },
+        {
+          "step": 351,
+          "operation": "insert",
+          "live": 7288266,
+          "old_base_slots": 3472031,
+          "old_base_dead": 0,
+          "delta_allocated": 3816235,
+          "delta_live": 3816235,
+          "prepared_graph_plus_old_delta_bytes": 5997807356
+        },
+        {
+          "step": 619,
+          "operation": "insert",
+          "live": 9195551,
+          "old_base_slots": 7288266,
+          "old_base_dead": 4970377,
+          "delta_allocated": 7417720,
+          "delta_live": 6877662,
+          "prepared_graph_plus_old_delta_bytes": 8993725896
+        },
+        {
+          "step": 981,
+          "operation": "delete",
+          "live": 4902291,
+          "old_base_slots": 9195551,
+          "old_base_dead": 8326627,
+          "delta_allocated": 6622712,
+          "delta_live": 4033367,
+          "prepared_graph_plus_old_delta_bytes": 6256874152
+        },
+        {
+          "step": 1141,
+          "operation": "insert",
+          "live": 7540761,
+          "old_base_slots": 4902291,
+          "old_base_dead": 2345797,
+          "delta_allocated": 4984267,
+          "delta_live": 4984267,
+          "prepared_graph_plus_old_delta_bytes": 6773226212
+        }
+      ]
+    },
+    {
+      "policy": {
+        "delta_ratio": 1.0,
+        "deleted_ratio": 1.0,
+        "min_delta": 100000
+      },
+      "consolidations": 9,
+      "total_rebuilt_rows": 31247661,
+      "max_array_bound": {
+        "step": 619,
+        "operation": "insert",
+        "live": 9195551,
+        "old_base_slots": 7288266,
+        "old_base_dead": 4970377,
+        "delta_allocated": 7417720,
+        "delta_live": 6877662,
+        "prepared_graph_plus_old_delta_bytes": 8993725896
+      },
+      "triggers": [
+        {
+          "step": 9,
+          "operation": "insert",
+          "live": 100025,
+          "old_base_slots": 0,
+          "old_base_dead": 0,
+          "delta_allocated": 100025,
+          "delta_live": 100025,
+          "prepared_graph_plus_old_delta_bytes": 108427100
+        },
+        {
+          "step": 21,
+          "operation": "insert",
+          "live": 448898,
+          "old_base_slots": 100025,
+          "old_base_dead": 0,
+          "delta_allocated": 348873,
+          "delta_live": 348873,
+          "prepared_graph_plus_old_delta_bytes": 431791732
+        },
+        {
+          "step": 31,
+          "operation": "insert",
+          "live": 1239816,
+          "old_base_slots": 448898,
+          "old_base_dead": 0,
+          "delta_allocated": 790918,
+          "delta_live": 790918,
+          "prepared_graph_plus_old_delta_bytes": 1097964440
+        },
+        {
+          "step": 59,
+          "operation": "insert",
+          "live": 2643083,
+          "old_base_slots": 1239816,
+          "old_base_dead": 0,
+          "delta_allocated": 1403267,
+          "delta_live": 1403267,
+          "prepared_graph_plus_old_delta_bytes": 2185682804
+        },
+        {
+          "step": 267,
+          "operation": "insert",
+          "live": 1665152,
+          "old_base_slots": 2643083,
+          "old_base_dead": 1879658,
+          "delta_allocated": 2647035,
+          "delta_live": 901727,
+          "prepared_graph_plus_old_delta_bytes": 2343096652
+        },
+        {
+          "step": 289,
+          "operation": "insert",
+          "live": 3472031,
+          "old_base_slots": 1665152,
+          "old_base_dead": 0,
+          "delta_allocated": 1806879,
+          "delta_live": 1806879,
+          "prepared_graph_plus_old_delta_bytes": 2851178308
+        },
+        {
+          "step": 351,
+          "operation": "insert",
+          "live": 7288266,
+          "old_base_slots": 3472031,
+          "old_base_dead": 0,
+          "delta_allocated": 3816235,
+          "delta_live": 3816235,
+          "prepared_graph_plus_old_delta_bytes": 5997807356
+        },
+        {
+          "step": 619,
+          "operation": "insert",
+          "live": 9195551,
+          "old_base_slots": 7288266,
+          "old_base_dead": 4970377,
+          "delta_allocated": 7417720,
+          "delta_live": 6877662,
+          "prepared_graph_plus_old_delta_bytes": 8993725896
+        },
+        {
+          "step": 1065,
+          "operation": "insert",
+          "live": 5194839,
+          "old_base_slots": 9195551,
+          "old_base_dead": 8941792,
+          "delta_allocated": 9261057,
+          "delta_live": 4941080,
+          "prepared_graph_plus_old_delta_bytes": 7859492940
+        }
+      ]
+    }
+  ]
+}

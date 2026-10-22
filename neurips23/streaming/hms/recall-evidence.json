@@ -1,5 +1,5 @@
 {
-  "status": "Delete-runbook recall target achieved within CPU, RSS and time limits; final runbook remains unscored after original RSS failure.",
+  "status": "Delete runbook met recall target on native cc5dede; new bounded native passed CI but critical final-shape probe timed out; no compliant completed final-runbook score.",
   "target": {
     "recall_at_10": 0.924,
     "visible_cpus": 8,
@@ -1723,5 +1723,19 @@
   "reproduction": {
     "official_delete": "HMS_COMMIT=cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038 HMS_IMAGE_ID=im-b2vpMMYmHN4fYGbms2isdz modal run --detach neurips23/streaming/hms/modal_stream.py --mode delete --build '{\"R\":32,\"L\":64,\"T\":8}' --search '{\"ef\":1024,\"rerank\":1024}' --run-id <new-32-character-hex-ID>",
     "warning": "Recorded command only; no additional job is needed or launched. Check cost reservation before any future work."
+  },
+  "bounded_native_candidate": {
+    "native_sha": "5701dc0d888a06eff9abce8ee1b4f8c6cb24d81b",
+    "pr": "https://github.com/writerslogic/holographic-memory/pull/205",
+    "ci_run": 39837109571,
+    "ci_status": "all jobs passed",
+    "default_tests": 608,
+    "all_feature_tests": 960,
+    "windows_tests": 604,
+    "focused_qgraph_tests": 59,
+    "focused_python_tests": 9,
+    "probe_evidence": "evidence/consolidation-bounded/verified-summary.json",
+    "probe_status": "failed-timeout-before-critical-consolidation-finished",
+    "official_final_score": null
   }
 }

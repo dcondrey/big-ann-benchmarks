@@ -1,0 +1,118 @@
+{
+  "status": "failed-timeout-before-critical-consolidation-finished",
+  "official_score": false,
+  "native_sha": "5701dc0d888a06eff9abce8ee1b4f8c6cb24d81b",
+  "app_id": "ap-U5nQl1FaPFRKWNxjgQ2UmH",
+  "run_id": "f86f7a58ec684024800004954e514dd6",
+  "app_state": "stopped; app stop reported already stopped at 2026-10-22 20:17:17 UTC",
+  "validated_at_utc": "2026-10-22T20:18:50.782086+00:00",
+  "probe_elapsed_seconds": 3601.5044705867767,
+  "child_timeout_seconds": 3600,
+  "sampler_count": 13911,
+  "last_sample_elapsed_seconds": 3599.942047225,
+  "peak_sampled_summed_rss_bytes": 8184307712,
+  "peak_sampled_summed_rss_gib": 7.622230529785156,
+  "cpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "memory_limit_bytes": 8589934592,
+  "retained_result_bytes": 512000000,
+  "target": {
+    "step": 673,
+    "operation": "delete",
+    "live": 8421866,
+    "old_base_slots": 6229778,
+    "old_base_dead": 1870177,
+    "delta_allocated": 4062265,
+    "delta_live": 4062265
+  },
+  "completed_checkpoint_metrics": [
+    {
+      "step": 580,
+      "seconds": 4.036193285000081,
+      "qps": 2477.5820417628483,
+      "recall10": 0.91541,
+      "gt_sha256": "5efab62f4843e8c18a777279c9acf1ee1367c15b198a6f49119b5cb0a34e2925",
+      "answers_sha256": "fb1e2aa0e50bcd45213f35816ef77d60ce035457ba14026cd14acbfcdb49b15d",
+      "all_answers_live_and_unique": true
+    },
+    {
+      "step": 672,
+      "seconds": 18.176354243999867,
+      "qps": 550.1653338045535,
+      "recall10": 0.89646,
+      "gt_sha256": "a56efd9e73dd7a38434f1489c01b38c03d72cbb842e363912dbc93d045878652",
+      "answers_sha256": "6df917aa6e28443840c2ae5ee7e0a6ee8e0ab61644bf9dc4691e6047dc0ebe95",
+      "all_answers_live_and_unique": true
+    }
+  ],
+  "completed_base_consolidations": [
+    {
+      "phase": "base_compact_finish",
+      "live": 100000,
+      "rss_bytes": 906743808,
+      "hwm_bytes": 996159488,
+      "seconds": 4.877865971
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 200000,
+      "rss_bytes": 985907200,
+      "hwm_bytes": 1079189504,
+      "seconds": 11.185442026
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 400000,
+      "rss_bytes": 1024192512,
+      "hwm_bytes": 1238028288,
+      "seconds": 26.901592956000002
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 800000,
+      "rss_bytes": 1086488576,
+      "hwm_bytes": 1613312000,
+      "seconds": 65.207779541
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 1600000,
+      "rss_bytes": 1222123520,
+      "hwm_bytes": 2272858112,
+      "seconds": 177.804496592
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 3200000,
+      "rss_bytes": 1436282880,
+      "hwm_bytes": 3670188032,
+      "seconds": 280.2144863060001
+    },
+    {
+      "phase": "base_compact_finish",
+      "live": 6229778,
+      "rss_bytes": 1811267584,
+      "hwm_bytes": 6321098752,
+      "seconds": 608.073452969
+    }
+  ],
+  "timed_work_before_critical_start_seconds": 1607.058101118999,
+  "validation": "Downloaded receipts, source hashes, exact target/IDs/runbook metadata, mutation steps, phase log and summed RSS samples agree.",
+  "limitations": [
+    "This skips earlier runbook history and intervening queries; it is not an official replay or aggregate recall.",
+    "Runtime checks validated live/unique IDs; exported neighbor arrays are unavailable for independent downloaded ID validation.",
+    "The process group was killed at the 3600-second guard. time.txt is empty; no final child HWM or CPU/paging profile exists.",
+    "Sampled RSS stayed under 8 GiB until timeout; completion and peak RSS of a completed critical consolidation remain unproven.",
+    "Cause of the long unfinished consolidation is unresolved; no valid CPU/I/O snapshot was obtained.",
+    "TimeoutExpired reports the final wait slice, not total runtime; receipt and samples record the actual duration.",
+    "Probe has a conservative 512 MB resident result reserve; no full-run time or resource-compliance claim."
+  ]
+}

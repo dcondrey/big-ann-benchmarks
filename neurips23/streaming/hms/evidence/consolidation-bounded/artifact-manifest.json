@@ -1,0 +1,54 @@
+{
+  "receipt.json": {
+    "bytes": 1100,
+    "sha256": "3e5c7b11f53cc6cc02da43e53d1ed89b66e73d5e21e5ed719f076c7ca46591e1"
+  },
+  "probe.json": {
+    "bytes": 15559,
+    "sha256": "2cdf334c44235d7a4089cb9adb4fd22cf5f62c282a6fc262c2a380f77a7b5b77"
+  },
+  "run.log": {
+    "bytes": 10656,
+    "sha256": "6c147ebfaf5cefc86e3d2b9fc1bd5a60964f3fb50f62ea7935398502f7ad99b7"
+  },
+  "run.rss.jsonl.gz": {
+    "bytes": 122677,
+    "sha256": "760c006e7b0c2b8e4dd3508494fde0fe427ad6e0905abd1def69dd14c1d10876"
+  },
+  "time.txt": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "verified-summary.json": {
+    "bytes": 4023,
+    "sha256": "fe37538df93f3b0f528f47a20de68b4a329d21d997092d1a9bf05b75b54313ab"
+  },
+  "source-manifest.json": {
+    "bytes": 381,
+    "sha256": "c67c1db7c3b016c6c392be0d132a488606d004a251c9a0f639b8d50b8a96e145"
+  },
+  "probe-plan.json": {
+    "bytes": 906,
+    "sha256": "5f62f42109a70ded9a9575674a095d531897f24795f4f53a0826e3871fd3509a"
+  },
+  "policy-metadata.json": {
+    "bytes": 19383,
+    "sha256": "8d6b1d7dce65020c17eb80520e40df8bb9985b454ec6a91496015c1e7af95ad7"
+  },
+  "source/consolidation_probe.py": {
+    "bytes": 8038,
+    "sha256": "56ca4f14e2c546efd8ad5866b2e46173676e3fba18ff700a38396c0838cf4942"
+  },
+  "source/modal_consolidation.py": {
+    "bytes": 3088,
+    "sha256": "373ea6229cd547b4a70275c5528878ee2ef749f835ca96eb1f872a35db4f5a83"
+  },
+  "source/consolidation_counts.py": {
+    "bytes": 2316,
+    "sha256": "7d620b01207466496582145d4e724581948cf018fee2fc9d6a9e5733dc8bb0a9"
+  },
+  "source/streaming_io.py": {
+    "bytes": 1625,
+    "sha256": "259a8a178c1f1d446ba568abf87ed681981e8752b16e3c36ec7df3e1f8271e44"
+  }
+}
