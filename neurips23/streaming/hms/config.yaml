@@ -33,7 +33,7 @@ msturing-10M-clustered:
         args: |
           [{"R":32, "L":64, "T":8}]
         query-args: |
-          [{"ef":256}, {"ef":512}]
+          [{"ef":1024}]
 msturing-30M-clustered:
   hms:
     docker-tag: neurips23-streaming-hms
@@ -45,4 +45,4 @@ msturing-30M-clustered:
         args: |
           [{"R":32, "L":64, "T":8}]
         query-args: |
-          [{"ef":256}, {"ef":512}]
+          [{"ef":1024}]

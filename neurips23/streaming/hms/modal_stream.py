@@ -10,7 +10,9 @@ import time
 
 import modal
 
-HMS_SHA = os.environ["HMS_COMMIT"]
+HMS_SHA = os.environ.get("HMS_COMMIT") or subprocess.check_output(
+    ["git", "-C", "/hms", "rev-parse", "HEAD"], text=True
+).strip()
 if re.fullmatch(r"[0-9a-f]{40}", HMS_SHA) is None:
     raise ValueError("HMS_COMMIT must be a full commit SHA")
 BAB_SHA = "89a3aba"
@@ -36,13 +38,40 @@ image = (
 
 
 def execute(args, log, timeout, env):
+    import psutil
+    deadline = time.monotonic() + timeout
+    last_commit = time.monotonic()
+    peak = 0
     with log.open("w") as output:
         process = subprocess.Popen(args, cwd="/bab", stdout=output, stderr=subprocess.STDOUT,
                                    env=env, start_new_session=True)
         try:
-            code = process.wait(timeout=timeout)
-        except subprocess.TimeoutExpired:
-            os.killpg(process.pid, signal.SIGKILL)
+            with log.with_suffix(".rss.jsonl").open("w") as samples:
+                while True:
+                    try:
+                        code = process.wait(timeout=min(5.0, max(0.001, deadline - time.monotonic())))
+                        break
+                    except subprocess.TimeoutExpired:
+                        if time.monotonic() >= deadline:
+                            raise
+                        try:
+                            child = psutil.Process(process.pid)
+                            processes = [psutil.Process(), child, *child.children(recursive=True)]
+                            rss = sum(p.memory_info().rss for p in processes)
+                        except psutil.NoSuchProcess:
+                            continue
+                        peak = max(peak, rss)
+                        sample = {"elapsed_seconds": time.monotonic() - (deadline - timeout),
+                                  "summed_process_rss_bytes": rss, "peak_sampled_rss_bytes": peak}
+                        samples.write(json.dumps(sample) + "\n")
+                        samples.flush()
+                        if time.monotonic() - last_commit >= 60:
+                            volume.commit()
+                            print("STREAMING_PROGRESS " + json.dumps(sample), flush=True)
+                            last_commit = time.monotonic()
+        except BaseException:
+            if process.poll() is None:
+                os.killpg(process.pid, signal.SIGKILL)
             process.wait()
             raise
     if code:
@@ -100,13 +129,14 @@ def run(mode: str, build: dict, search: dict):
     (root / "receipt.json").write_text(json.dumps(receipt, indent=2))
     try:
         if mode != "diagnostic":
-            cached = Path("/vol/streaming-recall/data")
+            folder = "MSTuring-10M-clustered" if mode == "delete" else "MSTuring-30M-clustered"
+            cached = Path("/vol/streaming-recall/data") / folder
             cached.mkdir(parents=True, exist_ok=True)
             data = Path("/bab/data")
-            if data.is_dir() and not data.is_symlink():
-                data.rmdir()
-            if not data.exists():
-                data.symlink_to(cached, target_is_directory=True)
+            data.mkdir(exist_ok=True)
+            dataset_dir = data / folder
+            if not dataset_dir.exists():
+                dataset_dir.symlink_to(cached, target_is_directory=True)
             execute(["python", "create_dataset.py", "--dataset", dataset], root / "prepare.log", 900, env)
             execute(["python", "-m", "benchmark.streaming.download_gt", "--runbook_file", str(book),
                      "--dataset", dataset], root / "ground-truth.log", 900, env)
