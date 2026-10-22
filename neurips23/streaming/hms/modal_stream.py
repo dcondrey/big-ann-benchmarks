@@ -19,7 +19,8 @@ BAB_SHA = "89a3aba"
 ADAPTER = Path(__file__).resolve().parent
 app = modal.App("hms-bigann")
 volume = modal.Volume.from_name("hms-bigann", create_if_missing=False)
-image = (
+IMAGE_ID = os.environ.get("HMS_IMAGE_ID")
+image = modal.Image.from_id(IMAGE_ID) if IMAGE_ID else (
     modal.Image.debian_slim(python_version="3.10")
     .apt_install("curl", "build-essential", "git", "time")
     .run_commands("curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.99.0")
@@ -33,8 +34,8 @@ image = (
         " && PATH=/root/.cargo/bin:$PATH maturin build -q --release --features python -i python3 -o /wheels"
         " && pip install -q /wheels/*.whl"
     )
-    .add_local_dir(ADAPTER, "/bab/neurips23/streaming/hms")
 )
+image = image.add_local_dir(ADAPTER, "/bab/neurips23/streaming/hms")
 
 
 def execute(args, log, timeout, env):
@@ -49,7 +50,7 @@ def execute(args, log, timeout, env):
             with log.with_suffix(".rss.jsonl").open("w") as samples:
                 while True:
                     try:
-                        code = process.wait(timeout=min(5.0, max(0.001, deadline - time.monotonic())))
+                        code = process.wait(timeout=min(0.25, max(0.001, deadline - time.monotonic())))
                         break
                     except subprocess.TimeoutExpired:
                         if time.monotonic() >= deadline:
@@ -57,14 +58,39 @@ def execute(args, log, timeout, env):
                         try:
                             child = psutil.Process(process.pid)
                             processes = [psutil.Process(), child, *child.children(recursive=True)]
-                            rss = sum(p.memory_info().rss for p in processes)
+                            rss_by_pid = {p.pid: p.memory_info().rss for p in processes}
+                            rss = sum(rss_by_pid.values())
                         except psutil.NoSuchProcess:
                             continue
                         peak = max(peak, rss)
                         sample = {"elapsed_seconds": time.monotonic() - (deadline - timeout),
-                                  "summed_process_rss_bytes": rss, "peak_sampled_rss_bytes": peak}
+                                  "summed_process_rss_bytes": rss, "peak_sampled_rss_bytes": peak,
+                                  "rss_by_pid": rss_by_pid}
                         samples.write(json.dumps(sample) + "\n")
                         samples.flush()
+                        if rss > 8 * 1024**3:
+                            try:
+                                descendants = child.children(recursive=True)
+                            except psutil.NoSuchProcess:
+                                descendants = []
+                            leaves = []
+                            for descendant in descendants:
+                                try:
+                                    if not descendant.children():
+                                        leaves.append(descendant)
+                                except psutil.NoSuchProcess:
+                                    continue
+                            for leaf in leaves or [child]:
+                                try:
+                                    leaf.kill()
+                                except psutil.NoSuchProcess:
+                                    pass
+                            try:
+                                process.wait(timeout=10)
+                            except subprocess.TimeoutExpired:
+                                os.killpg(process.pid, signal.SIGKILL)
+                                process.wait()
+                            raise MemoryError(f"summed benchmark and parent RSS {rss} exceeds 8 GiB")
                         if time.monotonic() - last_commit >= 60:
                             volume.commit()
                             print("STREAMING_PROGRESS " + json.dumps(sample), flush=True)
@@ -79,13 +105,23 @@ def execute(args, log, timeout, env):
 
 
 @app.function(image=image, volumes={"/vol": volume}, cpu=(8.0, 8.0), memory=(8192, 8192),
-              timeout=5400, max_containers=1)
-def run(mode: str, build: dict, search: dict):
+              timeout=3 * 3600, max_containers=1, nonpreemptible=True)
+def run(mode: str, build: dict, search: dict, run_id: str):
     if mode not in ("diagnostic", "delete", "final"):
         raise ValueError(mode)
     started = time.time()
-    tag = f"{mode}-{HMS_SHA[:12]}-{int(started)}"
+    if re.fullmatch(r"[0-9a-f]{32}", run_id) is None:
+        raise ValueError("run_id must be a 32-character hex identifier")
+    native_sha = subprocess.check_output(["git", "-C", "/hms", "rev-parse", "HEAD"], text=True).strip()
+    if native_sha != HMS_SHA:
+        raise ValueError("cached native image does not match HMS_COMMIT")
+    tag = f"{mode}-{HMS_SHA[:12]}-{run_id}"
     root = Path("/vol/streaming-recall") / tag
+    if root.exists():
+        previous = root / "receipt.json"
+        if previous.exists() and json.loads(previous.read_text()).get("status") == "complete":
+            return str(root)
+        raise RuntimeError(f"previous attempt interrupted; refusing automatic replay of {tag}")
     root.mkdir(parents=True)
     affinity = sorted(os.sched_getaffinity(0))
     if len(affinity) < 8:
@@ -95,7 +131,14 @@ def run(mode: str, build: dict, search: dict):
                OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="8", PYTHONUNBUFFERED="1")
     receipt = {"mode": mode, "hms_sha": HMS_SHA, "harness_sha": BAB_SHA,
                "build": build, "search": search, "cpus": affinity[:8],
-               "memory_limit_bytes": 8 * 1024**3, "started": started}
+               "memory_limit_bytes": 8 * 1024**3, "started": started, "status": "running"}
+    from hashlib import sha256
+    adapter_root = Path("/bab/neurips23/streaming/hms")
+    receipt["adapter_source_sha256"] = {
+        name: sha256((adapter_root / name).read_bytes()).hexdigest()
+        for name in ("hms.py", "streaming_io.py", "prepare_gt.py", "streaming_results.py")}
+    receipt["launcher_sha256"] = sha256(Path(__file__).read_bytes()).hexdigest()
+    receipt["dataset_io"] = "bounded-fbin-range"
     if mode == "diagnostic":
         from textwrap import dedent
         dataset = "msturing-1M-stream-diagnostic"
@@ -127,6 +170,7 @@ def run(mode: str, build: dict, search: dict):
     receipt["dataset"] = dataset
     receipt["runbook"] = str(book)
     (root / "receipt.json").write_text(json.dumps(receipt, indent=2))
+    volume.commit()
     try:
         if mode != "diagnostic":
             folder = "MSTuring-10M-clustered" if mode == "delete" else "MSTuring-30M-clustered"
@@ -137,18 +181,27 @@ def run(mode: str, build: dict, search: dict):
             dataset_dir = data / folder
             if not dataset_dir.exists():
                 dataset_dir.symlink_to(cached, target_is_directory=True)
-            execute(["python", "create_dataset.py", "--dataset", dataset], root / "prepare.log", 900, env)
-            execute(["python", "-m", "benchmark.streaming.download_gt", "--runbook_file", str(book),
-                     "--dataset", dataset], root / "ground-truth.log", 900, env)
+            execute(["python", "create_dataset.py", "--dataset", dataset], root / "prepare.log", 1800, env)
+            execute(["python", "-m", "neurips23.streaming.hms.prepare_gt", "--runbook", str(book),
+                     "--dataset", dataset], root / "ground-truth.log", 1800, env)
             volume.commit()
         execute(["/usr/bin/time", "-v", "-o", str(root / "time.txt"), "python", "run.py", "--nodocker",
                  "--neurips23track", "streaming", "--algorithm", "hms", "--dataset", dataset,
                  "--runbook_path", str(book)], root / "run.log", 1200 if mode == "diagnostic" else 3600, env)
         if mode != "diagnostic":
-            execute(["python", "data_export.py", "--out", str(root / "results.csv")], root / "export.log", 180, env)
             entries = yaml.safe_load(book.read_text())[dataset]
+            import sys
+            sys.path.insert(0, "/bab/neurips23/streaming/hms")
+            from streaming_results import validate_results
+            receipt["eligibility_validation"] = validate_results(
+                "/bab/results", entries, 10_000_000 if mode == "delete" else 29_998_994)
+            execute(["python", "data_export.py", "--out", str(root / "results.csv")], root / "export.log", 180, env)
             totals = {"search": [0, 0.0], "insert": [0, 0.0], "delete": [0, 0.0], "replace": [0, 0.0]}
-            for step, seconds in re.findall(r"Step (\d+) took ([\d.]+)s", (root / "run.log").read_text()):
+            timings = re.findall(r"Step (\d+) took ([0-9.eE+-]+)s", (root / "run.log").read_text())
+            expected_steps = {k for k in entries if isinstance(k, int)}
+            if len(timings) != len(expected_steps) or {int(step) for step, _ in timings} != expected_steps:
+                raise ValueError("incomplete or duplicate runbook timing records")
+            for step, seconds in timings:
                 entry = entries[int(step)]
                 operation = entry["operation"]
                 count = 10_000 if operation == "search" else (
@@ -160,7 +213,7 @@ def run(mode: str, build: dict, search: dict):
                                      for op, (count, seconds) in totals.items()}
         shutil.copytree("/bab/results", root / "raw-results", dirs_exist_ok=True)
         receipt["status"] = "complete"
-    except Exception as error:
+    except BaseException as error:
         receipt["status"] = "failed"
         receipt["error"] = f"{type(error).__name__}: {error}"
         raise
@@ -173,5 +226,6 @@ def run(mode: str, build: dict, search: dict):
 
 
 @app.local_entrypoint()
-def main(mode: str = "diagnostic", build: str = '{"R":32,"L":64,"T":8}', search: str = '{"ef":64}'):
-    print(run.remote(mode, json.loads(build), json.loads(search)))
+def main(mode: str = "diagnostic", build: str = '{"R":32,"L":64,"T":8}', search: str = '{"ef":64}', run_id: str = ""):
+    import uuid
+    print(run.remote(mode, json.loads(build), json.loads(search), run_id or uuid.uuid4().hex))

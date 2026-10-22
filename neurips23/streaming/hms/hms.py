@@ -3,8 +3,13 @@ import shutil
 
 import numpy as np
 
+from benchmark.datasets import DATASETS
 from holographic_memory import UpdatableIndex
 from neurips23.streaming.base import BaseStreamingANN
+from neurips23.streaming.hms.streaming_io import MSTuring10MRangeReader, MSTuring30MRangeReader
+
+DATASETS.update({"msturing-10M-clustered": MSTuring10MRangeReader,
+                 "msturing-30M-clustered": MSTuring30MRangeReader})
 
 
 class HMS(BaseStreamingANN):

@@ -1,0 +1,1727 @@
+{
+  "status": "Delete-runbook recall target achieved within CPU, RSS and time limits; final runbook remains unscored after original RSS failure.",
+  "target": {
+    "recall_at_10": 0.924,
+    "visible_cpus": 8,
+    "memory_bytes": 8589934592,
+    "official_benchmark_timeout_seconds": 3600
+  },
+  "native_candidate_sha": "cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038",
+  "diagnostic_native_sha": "752f937868501a2fa34cd6127eb9dcb50914cd80",
+  "harness_sha": "89a3aba",
+  "protocol": {
+    "rows": 1000000,
+    "dim": 100,
+    "source": "first 1M of msturing-10M-clustered",
+    "queries": "first 256 public testQuery10K queries, fixed for all states",
+    "k": 10,
+    "config": {
+      "R": 32,
+      "L": 64,
+      "ef": 64,
+      "T": 8
+    },
+    "states": [
+      "all 1M inserted without automatic consolidation",
+      "delete first 100k allocated IDs without consolidation",
+      "consolidate the remaining 900k"
+    ],
+    "ground_truth": "Blocked brute force float64 squared Euclidean distances per live state with deterministic external ID tie breaking",
+    "runtime_sweep": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "D_low": "Distinct ordinary live-to-live delta indegree <=1, before compact; report separate routing-tree-inclusive value",
+    "base_fbin_sha256": "71cb7bd48a79298f94d7d8eadc5c248ed682d9660ca4da606b2d5fa3b0cd6e05",
+    "query_fbin_sha256": "3d5967a8cfd6a60e03d216a91f0b153ba4016456ef5a747c71585567ca417d25"
+  },
+  "measurements": [
+    {
+      "checkpoint": "insert",
+      "R": 32,
+      "L": 64,
+      "T": 8,
+      "queries": 256,
+      "k": 10,
+      "ground_truth_live_start": 0,
+      "consolidate_seconds": null,
+      "topology": {
+        "base_dead": 0.0,
+        "base_slots": 0.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 0.0,
+        "delta_d_low": 0.01243,
+        "delta_d_low_with_tree": 0.007788,
+        "delta_dead_fraction": 0.0,
+        "delta_edges_from_live": 31668149.0,
+        "delta_entry_dead": 0.0,
+        "delta_live": 1000000.0,
+        "delta_live_reachable_fraction": 1.0,
+        "delta_searches": 0.0,
+        "delta_slots": 1000000.0,
+        "delta_stale_edge_fraction": 0.0,
+        "delta_visits": 0.0,
+        "live": 1000000.0,
+        "pending_ops": 0.0,
+        "queries": 0.0
+      },
+      "sweep": [
+        {
+          "ef": 64,
+          "recall10": 0.606640625,
+          "qps": 12263.31267619743
+        },
+        {
+          "ef": 128,
+          "recall10": 0.70390625,
+          "qps": 7798.252862368801
+        },
+        {
+          "ef": 256,
+          "recall10": 0.78828125,
+          "qps": 4302.31088209433
+        },
+        {
+          "ef": 512,
+          "recall10": 0.85625,
+          "qps": 2083.5336157151087
+        }
+      ],
+      "query_sha256": "d87a9fdb5a74433e50f46626dee6537524cb9f9c9a9c3d022cc4cae68a099241",
+      "counters_after": {
+        "base_dead": 0.0,
+        "base_slots": 0.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 245760.0,
+        "delta_d_low": 0.01243,
+        "delta_d_low_with_tree": 0.007788,
+        "delta_dead_fraction": 0.0,
+        "delta_edges_from_live": 31668149.0,
+        "delta_entry_dead": 0.0,
+        "delta_live": 1000000.0,
+        "delta_live_reachable_fraction": 1.0,
+        "delta_searches": 1024.0,
+        "delta_slots": 1000000.0,
+        "delta_stale_edge_fraction": 0.0,
+        "delta_visits": 6670176.0,
+        "live": 1000000.0,
+        "pending_ops": 0.0,
+        "queries": 1024.0
+      },
+      "peak_rss_kib": 1563424
+    },
+    {
+      "checkpoint": "delete",
+      "R": 32,
+      "L": 64,
+      "T": 8,
+      "queries": 256,
+      "k": 10,
+      "ground_truth_live_start": 100000,
+      "consolidate_seconds": null,
+      "topology": {
+        "base_dead": 0.0,
+        "base_slots": 0.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 245760.0,
+        "delta_d_low": 0.015024444444444444,
+        "delta_d_low_with_tree": 0.010657777777777778,
+        "delta_dead_fraction": 0.1,
+        "delta_edges_from_live": 28478051.0,
+        "delta_entry_dead": 1.0,
+        "delta_live": 900000.0,
+        "delta_live_reachable_fraction": 1.0,
+        "delta_searches": 1024.0,
+        "delta_slots": 1000000.0,
+        "delta_stale_edge_fraction": 0.09585122240282525,
+        "delta_visits": 6670176.0,
+        "live": 900000.0,
+        "pending_ops": 0.0,
+        "queries": 1024.0
+      },
+      "sweep": [
+        {
+          "ef": 64,
+          "recall10": 0.609765625,
+          "qps": 8323.547745757822
+        },
+        {
+          "ef": 128,
+          "recall10": 0.70703125,
+          "qps": 6647.35696023865
+        },
+        {
+          "ef": 256,
+          "recall10": 0.78515625,
+          "qps": 3442.37629494682
+        },
+        {
+          "ef": 512,
+          "recall10": 0.85625,
+          "qps": 1744.6624845470792
+        }
+      ],
+      "query_sha256": "d87a9fdb5a74433e50f46626dee6537524cb9f9c9a9c3d022cc4cae68a099241",
+      "counters_after": {
+        "base_dead": 0.0,
+        "base_slots": 0.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 496803.0,
+        "delta_d_low": 0.015024444444444444,
+        "delta_d_low_with_tree": 0.010657777777777778,
+        "delta_dead_fraction": 0.1,
+        "delta_edges_from_live": 28478051.0,
+        "delta_entry_dead": 1.0,
+        "delta_live": 900000.0,
+        "delta_live_reachable_fraction": 1.0,
+        "delta_searches": 2048.0,
+        "delta_slots": 1000000.0,
+        "delta_stale_edge_fraction": 0.09585122240282525,
+        "delta_visits": 13842063.0,
+        "live": 900000.0,
+        "pending_ops": 0.0,
+        "queries": 2048.0
+      },
+      "peak_rss_kib": 1563424
+    },
+    {
+      "checkpoint": "compact",
+      "R": 32,
+      "L": 64,
+      "T": 8,
+      "queries": 256,
+      "k": 10,
+      "ground_truth_live_start": 100000,
+      "consolidate_seconds": 58.50881205900001,
+      "topology": {
+        "base_dead": 0.0,
+        "base_slots": 900000.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 496803.0,
+        "delta_d_low": 0.0,
+        "delta_d_low_with_tree": 0.0,
+        "delta_dead_fraction": 0.0,
+        "delta_edges_from_live": 0.0,
+        "delta_entry_dead": 0.0,
+        "delta_live": 0.0,
+        "delta_live_reachable_fraction": 0.0,
+        "delta_searches": 2048.0,
+        "delta_slots": 0.0,
+        "delta_stale_edge_fraction": 0.0,
+        "delta_visits": 13842063.0,
+        "live": 900000.0,
+        "pending_ops": 0.0,
+        "queries": 2048.0
+      },
+      "sweep": [
+        {
+          "ef": 64,
+          "recall10": 0.594921875,
+          "qps": 6444.253169835347
+        },
+        {
+          "ef": 128,
+          "recall10": 0.721875,
+          "qps": 23860.131165519055
+        },
+        {
+          "ef": 256,
+          "recall10": 0.81875,
+          "qps": 15783.666112820863
+        },
+        {
+          "ef": 512,
+          "recall10": 0.8921875,
+          "qps": 8963.553735328314
+        }
+      ],
+      "query_sha256": "d87a9fdb5a74433e50f46626dee6537524cb9f9c9a9c3d022cc4cae68a099241",
+      "counters_after": {
+        "base_dead": 0.0,
+        "base_slots": 900000.0,
+        "base_topology_available": 0.0,
+        "delta_candidates": 496803.0,
+        "delta_d_low": 0.0,
+        "delta_d_low_with_tree": 0.0,
+        "delta_dead_fraction": 0.0,
+        "delta_edges_from_live": 0.0,
+        "delta_entry_dead": 0.0,
+        "delta_live": 0.0,
+        "delta_live_reachable_fraction": 0.0,
+        "delta_searches": 2048.0,
+        "delta_slots": 0.0,
+        "delta_stale_edge_fraction": 0.0,
+        "delta_visits": 13842063.0,
+        "live": 900000.0,
+        "pending_ops": 0.0,
+        "queries": 3072.0
+      },
+      "peak_rss_kib": 1563424
+    }
+  ],
+  "diagnosis": {
+    "R_insert": 0.606640625,
+    "R_delete": 0.609765625,
+    "R_compact": 0.594921875,
+    "D_low": 0.015024444444444444,
+    "decision": "No local tombstone repair: no deletion collapse, full reachability through dead slots, no ef64 recovery after consolidation. Search/build budget is the supported limiting mechanism on this prefix. Retain result-only filtering and immutable generations. Evaluate ef1024 as the final runtime intervention, keeping R32/L64, eight threads and existing policy; target is not presumed achieved. The next beam doubling is a prediction from measured ef64..512 improvement, not a measured 1M result.",
+    "threshold": "Retain adapter 30% base tombstone advisory threshold; one 10% deletion checkpoint does not identify an optimum, and the current 10M consolidation allocation is independently above cap. No claim of threshold optimality or safety.",
+    "dataset_mapping": "Measured on the diagnostic 1M source: touching 38,806 mapped rows raised RSS to 475,897,856 B, versus 92,110,848 B for range reading identical rows; same SHA256. Inference: Modal volume full-file first-touch residency explains the ~12GB first-insert final failure and adds ~4GB to earlier delete runs.",
+    "measured_runtime_outcome": "Official delete_runbook completed at recall@10 0.930141515151515, QPS 635.0289568173188, eight affinitized CPUs, T8, peak summed sampled RSS 8,016,285,696 B, child HWM 7,615,512 KiB, 35:58.36 wall. Target met on delete runbook, n=1; no completed compliant final_runbook score."
+  },
+  "historical_delete": {
+    "ef64_128": {
+      "baseline_hms_sha": "ff70f3e",
+      "source": "/Volumes/A/hms-coordination/public-bench/bigann-results/modal-10M-delete-R32L64-ef64-128.log",
+      "source_sha256": "f64874a6980a0d34485d95d8b641250e90d176147a07d45b88f65137f1567276",
+      "runbook_sha256": "c146fb5cde1920c90a86e045d534f776d9541747669b0a2fe915eac4a50fb48e",
+      "measurements": [
+        {
+          "ef": 64,
+          "recall10": 0.6813615151515151,
+          "steps": 75,
+          "searches": 330000,
+          "qps": 7501.717169393755,
+          "wall_step_seconds": 1000.4193267822266,
+          "times": {
+            "insert": 579.1079998016357,
+            "delete": 377.3213987350464,
+            "search": 43.989928245544434
+          },
+          "counts": {
+            "insert": 10000000,
+            "delete": 5400000,
+            "search": 330000
+          },
+          "peak_rss_kib_combined": 7780836,
+          "n": 1,
+          "visible_cpus": 4
+        },
+        {
+          "ef": 128,
+          "recall10": 0.7754515151515151,
+          "steps": 75,
+          "searches": 330000,
+          "qps": 4919.7920913091475,
+          "wall_step_seconds": 1139.7088310718536,
+          "times": {
+            "insert": 619.9087233543396,
+            "delete": 452.72410249710083,
+            "search": 67.07600522041321
+          },
+          "counts": {
+            "insert": 10000000,
+            "delete": 5400000,
+            "search": 330000
+          },
+          "peak_rss_kib_combined": 7780836,
+          "n": 1,
+          "visible_cpus": 4
+        }
+      ],
+      "limits": "CPU limits not fully established; RSS maximum spans both replays; no controlled comparison to eight visible CPUs"
+    },
+    "ef256": {
+      "ef": 256,
+      "R": 32,
+      "L": 64,
+      "visible_cpus": 4,
+      "search_qps": 2811.175167340458,
+      "peak_rss_kib": 7590376,
+      "step_seconds": 1370.2247495651245,
+      "n": 1,
+      "raw_official_csv": [
+        "hms,\"hms(R32_L64, {'ef': 256})\",msturing-10M-clustered(delete_runbook.yaml),10,0.0,0.004807233810424805,15248.0,0.0,0.0,streaming,0.8461460606060606"
+      ],
+      "source": "/Volumes/A/hms-coordination/public-bench/bigann-results/modal-10M-delete-R32L64-ef256.log"
+    }
+  },
+  "original_delete_failure": {
+    "app_id": "ap-HttrZXH9u25s7g2eLhSXlV",
+    "attempts": 2,
+    "peak_summed_process_rss_bytes": 9631723520,
+    "valid_official_scores": 0
+  },
+  "original_final_failure": {
+    "app_id": "ap-9EUwf9vaBWKpnq95qEl8sn",
+    "receipt": {
+      "mode": "final",
+      "hms_sha": "cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038",
+      "harness_sha": "89a3aba",
+      "build": {
+        "R": 32,
+        "L": 64,
+        "T": 8
+      },
+      "search": {
+        "ef": 1024,
+        "rerank": 1024
+      },
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "memory_limit_bytes": 8589934592,
+      "started": 1792688355.0877032,
+      "status": "failed",
+      "dataset": "msturing-30M-clustered",
+      "runbook": "/bab/neurips23/runbooks/final_runbook.yaml",
+      "error": "MemoryError: summed benchmark and parent RSS 12365340672 exceeds 8 GiB",
+      "elapsed_seconds": 1406.3639798164368
+    },
+    "resource_samples": [
+      {
+        "elapsed_seconds": 0.25527305500031616,
+        "summed_process_rss_bytes": 150953984,
+        "peak_sampled_rss_bytes": 150953984,
+        "rss_by_pid": {
+          "2": 60706816,
+          "11": 2994176,
+          "12": 87252992
+        }
+      },
+      {
+        "elapsed_seconds": 0.5066541400003644,
+        "summed_process_rss_bytes": 285085696,
+        "peak_sampled_rss_bytes": 285085696,
+        "rss_by_pid": {
+          "2": 60706816,
+          "11": 2994176,
+          "12": 158388224,
+          "14": 62996480
+        }
+      },
+      {
+        "elapsed_seconds": 0.7577544900002522,
+        "summed_process_rss_bytes": 12365340672,
+        "peak_sampled_rss_bytes": 12365340672,
+        "rss_by_pid": {
+          "2": 60706816,
+          "11": 2994176,
+          "12": 158388224,
+          "14": 12143251456
+        }
+      }
+    ],
+    "time_output": "Command exited with non-zero status 1\n\tCommand being timed: \"python run.py --nodocker --neurips23track streaming --algorithm hms --dataset msturing-30M-clustered --runbook_path /bab/neurips23/runbooks/final_runbook.yaml\"\n\tUser time (seconds): 0.70\n\tSystem time (seconds): 0.23\n\tPercent of CPU this job got: 116%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:00.80\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 11858644\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 0\n\tMinor (reclaiming a frame) page faults: 0\n\tVoluntary context switches: 4701\n\tInvoluntary context switches: 0\n\tSwaps: 0\n\tFile system inputs: 0\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 1\n",
+    "valid_official_scores": 0,
+    "ground_truth_input_manifest_sha256": "d431eb0ff9db8d67cf694846c7a39f323655df0baeda8b73da226d5802afd857",
+    "ground_truth_checkpoint_files": 640
+  },
+  "runtime_probe": {
+    "app_id": "ap-9biw0havHdKbMZKK2e9pMZ",
+    "receipt": {
+      "image_id": "im-b2vpMMYmHN4fYGbms2isdz",
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "rss_guard_bytes": 1073741824,
+      "status": "complete",
+      "runs": [
+        {
+          "name": "full-map",
+          "peak_summed_rss_bytes": 135655424,
+          "environment": {}
+        },
+        {
+          "name": "range-read",
+          "peak_summed_rss_bytes": 136380416,
+          "environment": {}
+        },
+        {
+          "name": "allocator-default",
+          "peak_summed_rss_bytes": 426684416,
+          "environment": {}
+        },
+        {
+          "name": "allocator-tuned",
+          "peak_summed_rss_bytes": 334823424,
+          "environment": {
+            "MALLOC_ARENA_MAX": "2",
+            "MALLOC_MMAP_THRESHOLD_": "131072",
+            "MALLOC_TRIM_THRESHOLD_": "131072"
+          }
+        }
+      ],
+      "dataset_readers_equal": true,
+      "elapsed_seconds": 46.531985187000004
+    },
+    "phase_records": {
+      "full-map": [
+        {
+          "phase": "before_io",
+          "rss_bytes": 75862016,
+          "hwm_kib": 74084,
+          "mode": "full-map"
+        },
+        {
+          "phase": "after_io",
+          "rss_bytes": 75894784,
+          "hwm_kib": 74116,
+          "mode": "full-map",
+          "rows": 38806
+        },
+        {
+          "phase": "after_touch",
+          "rss_bytes": 475897856,
+          "hwm_kib": 479904,
+          "mode": "full-map",
+          "sha256": "c6fba597e173234969e1a61ebf28643416034dde89b8c257e595140b647c0480"
+        }
+      ],
+      "range-read": [
+        {
+          "phase": "before_io",
+          "rss_bytes": 76587008,
+          "hwm_kib": 74792,
+          "mode": "range-read"
+        },
+        {
+          "phase": "after_io",
+          "rss_bytes": 92110848,
+          "hwm_kib": 89952,
+          "mode": "range-read",
+          "rows": 38806
+        },
+        {
+          "phase": "after_touch",
+          "rss_bytes": 92110848,
+          "hwm_kib": 105112,
+          "mode": "range-read",
+          "sha256": "c6fba597e173234969e1a61ebf28643416034dde89b8c257e595140b647c0480"
+        }
+      ],
+      "allocator-default": [
+        {
+          "phase": "start",
+          "rss_bytes": 118468608,
+          "hwm_kib": 115692,
+          "libc": [
+            "glibc",
+            "2.36"
+          ],
+          "rows": 100000,
+          "dim": 100
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 225755136,
+          "hwm_kib": 261768,
+          "cycle": 0
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 225755136,
+          "hwm_kib": 261768,
+          "cycle": 0
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 202600448,
+          "hwm_kib": 261768,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 212742144,
+          "hwm_kib": 289176,
+          "cycle": 0,
+          "seconds": 2.0424697379999994
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 236724224,
+          "hwm_kib": 289176,
+          "cycle": 0
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 217141248,
+          "hwm_kib": 289176,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 171450368,
+          "hwm_kib": 289176,
+          "cycle": 0
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 170070016,
+          "hwm_kib": 289176,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 326205440,
+          "hwm_kib": 357624,
+          "cycle": 1
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 326205440,
+          "hwm_kib": 357624,
+          "cycle": 1
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 247197696,
+          "hwm_kib": 357624,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 319545344,
+          "hwm_kib": 357624,
+          "cycle": 1,
+          "seconds": 2.5294726659999984
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 342921216,
+          "hwm_kib": 357624,
+          "cycle": 1
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 259825664,
+          "hwm_kib": 357624,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 171974656,
+          "hwm_kib": 357624,
+          "cycle": 1
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 170770432,
+          "hwm_kib": 357624,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 326889472,
+          "hwm_kib": 358292,
+          "cycle": 2
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 326889472,
+          "hwm_kib": 358292,
+          "cycle": 2
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 247726080,
+          "hwm_kib": 358292,
+          "cycle": 2,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 321581056,
+          "hwm_kib": 358292,
+          "cycle": 2,
+          "seconds": 2.5862058879999985
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 346943488,
+          "hwm_kib": 358292,
+          "cycle": 2
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 261902336,
+          "hwm_kib": 358292,
+          "cycle": 2,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 172732416,
+          "hwm_kib": 358292,
+          "cycle": 2
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 171393024,
+          "hwm_kib": 358292,
+          "cycle": 2,
+          "trim_return": 1
+        }
+      ],
+      "allocator-tuned": [
+        {
+          "phase": "start",
+          "rss_bytes": 118161408,
+          "hwm_kib": 115392,
+          "libc": [
+            "glibc",
+            "2.36"
+          ],
+          "rows": 100000,
+          "dim": 100
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 200581120,
+          "hwm_kib": 264668,
+          "cycle": 0
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 200581120,
+          "hwm_kib": 264668,
+          "cycle": 0
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 202076160,
+          "hwm_kib": 264668,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 158679040,
+          "hwm_kib": 292840,
+          "cycle": 0,
+          "seconds": 8.191475427000004
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 182550528,
+          "hwm_kib": 292840,
+          "cycle": 0
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 182550528,
+          "hwm_kib": 292840,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 132182016,
+          "hwm_kib": 292840,
+          "cycle": 0
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 131092480,
+          "hwm_kib": 292840,
+          "cycle": 0,
+          "trim_return": 1
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 202203136,
+          "hwm_kib": 292840,
+          "cycle": 1
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 202244096,
+          "hwm_kib": 292840,
+          "cycle": 1
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 202018816,
+          "hwm_kib": 292840,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 158461952,
+          "hwm_kib": 292840,
+          "cycle": 1,
+          "seconds": 4.580492540999998
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 182259712,
+          "hwm_kib": 292840,
+          "cycle": 1
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 182128640,
+          "hwm_kib": 292840,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 131784704,
+          "hwm_kib": 292840,
+          "cycle": 1
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 130723840,
+          "hwm_kib": 292840,
+          "cycle": 1,
+          "trim_return": 1
+        },
+        {
+          "phase": "insert",
+          "rss_bytes": 202264576,
+          "hwm_kib": 292840,
+          "cycle": 2
+        },
+        {
+          "phase": "before_insert_trim",
+          "rss_bytes": 202264576,
+          "hwm_kib": 292840,
+          "cycle": 2
+        },
+        {
+          "phase": "after_insert_trim",
+          "rss_bytes": 202059776,
+          "hwm_kib": 292840,
+          "cycle": 2,
+          "trim_return": 1
+        },
+        {
+          "phase": "consolidate",
+          "rss_bytes": 158498816,
+          "hwm_kib": 292840,
+          "cycle": 2,
+          "seconds": 4.625824805999997
+        },
+        {
+          "phase": "before_compact_trim",
+          "rss_bytes": 182259712,
+          "hwm_kib": 292840,
+          "cycle": 2
+        },
+        {
+          "phase": "after_compact_trim",
+          "rss_bytes": 182128640,
+          "hwm_kib": 292840,
+          "cycle": 2,
+          "trim_return": 1
+        },
+        {
+          "phase": "drop",
+          "rss_bytes": 132022272,
+          "hwm_kib": 292840,
+          "cycle": 2
+        },
+        {
+          "phase": "after_drop_trim",
+          "rss_bytes": 130711552,
+          "hwm_kib": 292840,
+          "cycle": 2,
+          "trim_return": 1
+        }
+      ]
+    },
+    "summary": [
+      {
+        "name": "allocator-default",
+        "cycles": 3,
+        "peak_child_hwm_kib": 358292,
+        "compact_seconds": [
+          2.0424697379999994,
+          2.5294726659999984,
+          2.5862058879999985
+        ],
+        "insert_trim_rss_change_bytes": [
+          23154688,
+          79007744,
+          79163392
+        ],
+        "compact_trim_rss_change_bytes": [
+          19582976,
+          83095552,
+          85041152
+        ]
+      },
+      {
+        "name": "allocator-tuned",
+        "cycles": 3,
+        "peak_child_hwm_kib": 292840,
+        "compact_seconds": [
+          8.191475427000004,
+          4.580492540999998,
+          4.625824805999997
+        ],
+        "insert_trim_rss_change_bytes": [
+          -1495040,
+          225280,
+          204800
+        ],
+        "compact_trim_rss_change_bytes": [
+          0,
+          131072,
+          131072
+        ]
+      }
+    ],
+    "limitations": [
+      "One ordered default/tuned process pair, three cycles in each; no statistical spread.",
+      "Short I/O peaks escaped the 100ms parent sampler; phase RSS/HWM exceed sampled sums.",
+      "Original probe range read used numpy.fromfile directly; final helper validates that same bounded read.",
+      "No allocator policy change is applied to the corrected official replay."
+    ]
+  },
+  "actual_final_policy_bounds": [
+    {
+      "step": 9,
+      "operation": "insert",
+      "live": 100025,
+      "old_base_slots": 0,
+      "old_base_dead": 0,
+      "delta_allocated": 100025,
+      "delta_live": 100025,
+      "new_generation_arrays_lower_bound_bytes": 91622900,
+      "old_delta_arrays_lower_bound_bytes": 54813700,
+      "combined_lower_bound_bytes": 146436600
+    },
+    {
+      "step": 21,
+      "operation": "insert",
+      "live": 448898,
+      "old_base_slots": 100025,
+      "old_base_dead": 0,
+      "delta_allocated": 348873,
+      "delta_live": 348873,
+      "new_generation_arrays_lower_bound_bytes": 411190568,
+      "old_delta_arrays_lower_bound_bytes": 191182404,
+      "combined_lower_bound_bytes": 602372972
+    },
+    {
+      "step": 31,
+      "operation": "insert",
+      "live": 1239816,
+      "old_base_slots": 448898,
+      "old_base_dead": 0,
+      "delta_allocated": 790918,
+      "delta_live": 790918,
+      "new_generation_arrays_lower_bound_bytes": 1135671456,
+      "old_delta_arrays_lower_bound_bytes": 433423064,
+      "combined_lower_bound_bytes": 1569094520
+    },
+    {
+      "step": 59,
+      "operation": "insert",
+      "live": 2643083,
+      "old_base_slots": 1239816,
+      "old_base_dead": 0,
+      "delta_allocated": 1403267,
+      "delta_live": 1403267,
+      "new_generation_arrays_lower_bound_bytes": 2421064028,
+      "old_delta_arrays_lower_bound_bytes": 768990316,
+      "combined_lower_bound_bytes": 3190054344
+    },
+    {
+      "step": 159,
+      "operation": "delete",
+      "live": 4143922,
+      "old_base_slots": 2643083,
+      "old_base_dead": 886593,
+      "delta_allocated": 2387432,
+      "delta_live": 2387432,
+      "new_generation_arrays_lower_bound_bytes": 3795832552,
+      "old_delta_arrays_lower_bound_bytes": 1308312736,
+      "combined_lower_bound_bytes": 5104145288
+    },
+    {
+      "step": 209,
+      "operation": "delete",
+      "live": 2900501,
+      "old_base_slots": 4143922,
+      "old_base_dead": 1243421,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 2656858916,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 2656858916
+    },
+    {
+      "step": 231,
+      "operation": "delete",
+      "live": 2027795,
+      "old_base_slots": 2900501,
+      "old_base_dead": 872706,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 1857460220,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 1857460220
+    },
+    {
+      "step": 255,
+      "operation": "delete",
+      "live": 1405549,
+      "old_base_slots": 2027795,
+      "old_base_dead": 622246,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 1287482884,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 1287482884
+    },
+    {
+      "step": 283,
+      "operation": "insert",
+      "live": 3109157,
+      "old_base_slots": 1405549,
+      "old_base_dead": 0,
+      "delta_allocated": 1703608,
+      "delta_live": 1703608,
+      "new_generation_arrays_lower_bound_bytes": 2847987812,
+      "old_delta_arrays_lower_bound_bytes": 933577184,
+      "combined_lower_bound_bytes": 3781564996
+    },
+    {
+      "step": 335,
+      "operation": "insert",
+      "live": 6230108,
+      "old_base_slots": 3109157,
+      "old_base_dead": 0,
+      "delta_allocated": 3120951,
+      "delta_live": 3120951,
+      "new_generation_arrays_lower_bound_bytes": 5706778928,
+      "old_delta_arrays_lower_bound_bytes": 1710281148,
+      "combined_lower_bound_bytes": 7417060076
+    },
+    {
+      "step": 427,
+      "operation": "delete",
+      "live": 6266345,
+      "old_base_slots": 6230108,
+      "old_base_dead": 1886945,
+      "delta_allocated": 1923182,
+      "delta_live": 1923182,
+      "new_generation_arrays_lower_bound_bytes": 5739972020,
+      "old_delta_arrays_lower_bound_bytes": 1053903736,
+      "combined_lower_bound_bytes": 6793875756
+    },
+    {
+      "step": 463,
+      "operation": "delete",
+      "live": 4370609,
+      "old_base_slots": 6266345,
+      "old_base_dead": 1895736,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 4003477844,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 4003477844
+    },
+    {
+      "step": 489,
+      "operation": "delete",
+      "live": 3052105,
+      "old_base_slots": 4370609,
+      "old_base_dead": 1318504,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 2795728180,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 2795728180
+    },
+    {
+      "step": 579,
+      "operation": "insert",
+      "live": 6229778,
+      "old_base_slots": 3052105,
+      "old_base_dead": 409250,
+      "delta_allocated": 3586923,
+      "delta_live": 3586923,
+      "new_generation_arrays_lower_bound_bytes": 5706476648,
+      "old_delta_arrays_lower_bound_bytes": 1965633804,
+      "combined_lower_bound_bytes": 7672110452
+    },
+    {
+      "step": 673,
+      "operation": "delete",
+      "live": 8421866,
+      "old_base_slots": 6229778,
+      "old_base_dead": 1870177,
+      "delta_allocated": 4062265,
+      "delta_live": 4062265,
+      "new_generation_arrays_lower_bound_bytes": 7714429256,
+      "old_delta_arrays_lower_bound_bytes": 2226121220,
+      "combined_lower_bound_bytes": 9940550476
+    },
+    {
+      "step": 717,
+      "operation": "delete",
+      "live": 5868774,
+      "old_base_slots": 8421866,
+      "old_base_dead": 2553092,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 5375796984,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 5375796984
+    },
+    {
+      "step": 745,
+      "operation": "delete",
+      "live": 4000195,
+      "old_base_slots": 5868774,
+      "old_base_dead": 1868579,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 3664178620,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 3664178620
+    },
+    {
+      "step": 881,
+      "operation": "insert",
+      "live": 6969764,
+      "old_base_slots": 4000195,
+      "old_base_dead": 1177289,
+      "delta_allocated": 4146858,
+      "delta_live": 4146858,
+      "new_generation_arrays_lower_bound_bytes": 6384303824,
+      "old_delta_arrays_lower_bound_bytes": 2272478184,
+      "combined_lower_bound_bytes": 8656782008
+    },
+    {
+      "step": 957,
+      "operation": "delete",
+      "live": 6132470,
+      "old_base_slots": 6969764,
+      "old_base_dead": 2216656,
+      "delta_allocated": 1379362,
+      "delta_live": 1379362,
+      "new_generation_arrays_lower_bound_bytes": 5617342520,
+      "old_delta_arrays_lower_bound_bytes": 755890376,
+      "combined_lower_bound_bytes": 6373232896
+    },
+    {
+      "step": 1003,
+      "operation": "delete",
+      "live": 4259551,
+      "old_base_slots": 6132470,
+      "old_base_dead": 1872919,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 3901748716,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 3901748716
+    },
+    {
+      "step": 1017,
+      "operation": "delete",
+      "live": 2775418,
+      "old_base_slots": 4259551,
+      "old_base_dead": 1484133,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 2542282888,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 2542282888
+    },
+    {
+      "step": 1079,
+      "operation": "insert",
+      "live": 5335531,
+      "old_base_slots": 2775418,
+      "old_base_dead": 218924,
+      "delta_allocated": 2779037,
+      "delta_live": 2779037,
+      "new_generation_arrays_lower_bound_bytes": 4887346396,
+      "old_delta_arrays_lower_bound_bytes": 1522912276,
+      "combined_lower_bound_bytes": 6410258672
+    },
+    {
+      "step": 1173,
+      "operation": "delete",
+      "live": 5957180,
+      "old_base_slots": 5335531,
+      "old_base_dead": 1644484,
+      "delta_allocated": 2266133,
+      "delta_live": 2266133,
+      "new_generation_arrays_lower_bound_bytes": 5456776880,
+      "old_delta_arrays_lower_bound_bytes": 1241840884,
+      "combined_lower_bound_bytes": 6698617764
+    },
+    {
+      "step": 1223,
+      "operation": "delete",
+      "live": 4109781,
+      "old_base_slots": 5957180,
+      "old_base_dead": 1847399,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 3764559396,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 3764559396
+    },
+    {
+      "step": 1265,
+      "operation": "delete",
+      "live": 2833531,
+      "old_base_slots": 4109781,
+      "old_base_dead": 1276250,
+      "delta_allocated": 0,
+      "delta_live": 0,
+      "new_generation_arrays_lower_bound_bytes": 2595514396,
+      "old_delta_arrays_lower_bound_bytes": 0,
+      "combined_lower_bound_bytes": 2595514396
+    }
+  ],
+  "static_accounting_note": "Allocation lower bounds from metadata and current logical arrays; not measured RSS. Old base, capacity slack, IDs, allocator and runner are additional. No architectural impossibility claim.",
+  "crash_and_validation": {
+    "native_ci": {
+      "run_id": 39810901859,
+      "url": "https://github.com/writerslogic/holographic-memory/actions/runs/39810901859",
+      "head": "cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038",
+      "status": "success",
+      "default_tests": 586,
+      "all_feature_tests": 934,
+      "platforms": [
+        "Linux",
+        "Windows"
+      ],
+      "msrv": "1.89"
+    },
+    "local": {
+      "adapter": "6 focused Python unittest tests passed; includes exact source ranges and malformed source rejection",
+      "final_local_clippy": "PASS: CARGO_TARGET_DIR=/Volumes/A/.sol-target-stream cargo clippy --all-targets -- -D warnings; exactly one local compiling Cargo invocation",
+      "final_cargo_fmt": "PASS: cargo fmt --check",
+      "final_local_gate_as_of_utc": "2026-10-22 17:44:32.330000+00:00"
+    },
+    "local_compiling_cargo_invocations": 1,
+    "logs": {
+      "python-focused.log": {
+        "sha256": "3884f83255b63480b178b50a1cdd1576f7134f9a64ac130ceed6487a1c8b4e36",
+        "text": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.057s\n\nOK\n"
+      },
+      "final-clippy.log": {
+        "sha256": "473504875bb4224e3a2391a044623193abefb3f561e1d649d057cb84d7ae2900",
+        "text": "   Compiling proc-macro2 v1.0.107\n   Compiling quote v1.0.47\n   Compiling unicode-ident v1.0.27\n   Compiling libc v0.2.191\n    Checking cfg-if v1.0.5\n   Compiling autocfg v1.5.1\n   Compiling serde_core v1.0.229\n   Compiling serde v1.0.229\n   Compiling crossbeam-utils v0.8.23\n    Checking rand_core v0.10.1\n   Compiling crossbeam-epoch v0.9.21\n   Compiling zmij v1.0.23\n   Compiling getrandom v0.4.3\n    Checking utf8parse v0.2.2\n    Checking once_cell v1.21.4\n   Compiling crossbeam-deque v0.8.8\n   Compiling rustix v1.1.5\n   Compiling serde_json v1.0.154\n    Checking anstyle-parse v1.0.0\n    Checking itoa v1.0.18\n    Checking anstyle v1.0.14\n    Checking either v1.19.0\n   Compiling num-traits v0.2.19\n    Checking memchr v2.8.3\n    Checking anstyle-query v1.1.5\n    Checking colorchoice v1.0.5\n    Checking is_terminal_polyfill v1.70.2\n    Checking bitflags v2.13.2\n   Compiling rayon-core v1.13.0\n    Checking anstream v1.0.0\n   Compiling matrixmultiply v0.3.11\n   Compiling heck v0.5.0\n    Checking strsim v0.11.1\n    Checking bytemuck v1.25.2\n    Checking clap_lex v1.1.1\n   Compiling parking_lot_core v0.9.12\n    Checking fastrand v2.5.0\n   Compiling ref-cast v1.0.27\n   Compiling thiserror v2.0.21\n    Checking wide v1.7.1\n    Checking clap_builder v4.6.7\n   Compiling syn v3.0.9\n   Compiling syn v2.0.119\n    Checking chacha20 v0.10.2\n   Compiling termcolor v1.4.1\n    Checking scopeguard v1.2.0\n   Compiling crc32fast v1.5.3\n    Checking rawpointer v0.2.1\n    Checking approx v0.5.1\n    Checking errno v0.3.14\n    Checking num-integer v0.1.47\n   Compiling anyhow v1.0.104\n    Checking smallvec v1.16.3\n   Compiling virtue v0.0.18\n    Checking rand v0.10.3\n    Checking num-rational v0.4.2\n    Checking lock_api v0.4.14\n    Checking rayon v1.12.0\n   Compiling bincode_derive v2.0.1\n    Checking tracing-core v0.1.36\n    Checking dyn-clone v1.0.20\n    Checking unty v0.0.4\n    Checking byteorder v1.5.0\n    Checking twox-hash v2.1.5\n    Checking typenum v1.20.1\n   Compiling holographic-memory v0.6.1 (/Volumes/A/.sol-wt-stream)\n    Checking pin-project-lite v0.2.17\n    Checking lz4_flex v0.14.0\n    Checking fxhash v0.2.1\n    Checking parking_lot v0.12.5\n    Checking fs2 v0.4.3\n    Checking memmap2 v0.9.11\n    Checking foldhash v0.2.0\n   Compiling shlex v2.0.1\n   Compiling find-msvc-tools v0.1.15\n    Checking tempfile v3.27.0\n   Compiling zerocopy v0.8.63\n   Compiling cc v1.9.0\n    Checking regex-syntax v0.8.11\n    Checking ciborium-io v0.2.2\n    Checking num-conv v0.2.2\n    Checking time-core v0.1.9\n    Checking deranged v0.5.9\n    Checking powerfmt v0.2.1\n    Checking plotters-backend v0.3.7\n    Checking wait-timeout v0.2.1\n    Checking getrandom v0.2.17\n    Checking itertools v0.13.0\n    Checking plotters-svg v0.3.7\n    Checking zeroize v1.9.1\n    Checking fnv v1.0.7\n    Checking untrusted v0.9.0\n    Checking cast v0.3.0\n    Checking bit-vec v0.10.1\n    Checking base64 v0.23.1\n    Checking quick-error v1.2.3\n    Checking same-file v1.0.6\n    Checking walkdir v2.5.0\n    Checking rusty-fork v0.3.1\n    Checking pem v4.0.0\n    Checking bit-set v0.11.1\n    Checking rustls-pki-types v1.15.1\n    Checking plotters v0.3.7\n    Checking page_size v0.6.0\n    Checking rand_xorshift v0.5.0\n    Checking unarray v0.1.4\n    Checking anes v0.1.6\n    Checking oorandom v11.1.5\n    Checking time v0.3.55\n    Checking core_detect v1.0.0\n   Compiling alloca v0.4.0\n   Compiling ring v0.17.14\n   Compiling serde_derive_internals v0.30.0\n    Checking criterion-plot v0.8.2\n    Checking yasna v0.6.0\n   Compiling serde_derive v1.0.229\n   Compiling thiserror-impl v2.0.21\n   Compiling ref-cast-impl v1.0.27\n   Compiling clap_derive v4.6.7\n   Compiling schemars_derive v1.2.3\n    Checking regex-automata v0.4.18\n    Checking proptest v1.12.0\n   Compiling ts-rs-macros v12.0.1\n   Compiling tracing-attributes v0.1.31\n   Compiling nalgebra-macros v0.3.0\n   Compiling zerocopy-derive v0.8.63\n    Checking clap v4.6.7\n    Checking regex v1.13.1\n    Checking tracing v0.1.44\n    Checking rcgen v0.14.10\n    Checking ts-rs v12.0.1\n    Checking num-complex v0.4.6\n    Checking rust-stemmers v1.2.0\n    Checking schemars v1.2.3\n    Checking bincode v2.0.1\n    Checking tinytemplate v1.2.1\n    Checking simba v0.10.2\n    Checking half v2.7.1\n    Checking ciborium-ll v0.2.2\n    Checking nalgebra v0.35.0\n    Checking ciborium v0.2.2\n    Checking criterion v0.8.2\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 27.01s\n"
+      },
+      "final-cargo-fmt.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      }
+    }
+  },
+  "delivery_limits": {
+    "modal_image_builds": 2,
+    "modal_image_build_limit": 2,
+    "pushes_before_final_delivery": 7,
+    "push_limit": 8,
+    "spend_cap_usd": "15"
+  },
+  "corrected_delete": {
+    "app_id": "ap-RYJ8JbAxbmXWZbW2zC7QL5",
+    "receipt": {
+      "mode": "delete",
+      "hms_sha": "cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038",
+      "harness_sha": "89a3aba",
+      "build": {
+        "R": 32,
+        "L": 64,
+        "T": 8
+      },
+      "search": {
+        "ef": 1024,
+        "rerank": 1024
+      },
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "memory_limit_bytes": 8589934592,
+      "started": 1792690907.0477123,
+      "status": "complete",
+      "adapter_source_sha256": {
+        "hms.py": "1a54a27fbd3567437988457659528b4ea961f7e4a1008fd64b4a741bd1b0bc4a",
+        "streaming_io.py": "259a8a178c1f1d446ba568abf87ed681981e8752b16e3c36ec7df3e1f8271e44",
+        "prepare_gt.py": "96e1e275c4a42fdfa21f60b4bca90b9fddf52ebc9fc4bc61d9907b9467da51e4",
+        "streaming_results.py": "96f1992baedd025019a89221e615d2cafc3ae9b41862626179d08a8c157be13b"
+      },
+      "launcher_sha256": "40cb0755c815fb6907e16316f6a2a78d8f394836570d648c109beec4029b11aa",
+      "dataset_io": "bounded-fbin-range",
+      "dataset": "msturing-10M-clustered",
+      "runbook": "/bab/neurips23/runbooks/delete_runbook.yaml",
+      "eligibility_validation": {
+        "search_checkpoints": 33,
+        "queries": 330000,
+        "returned_ids": 3300000,
+        "all_returned_ids_live_and_unique": true
+      },
+      "throughput": {
+        "search": {
+          "count": 330000,
+          "seconds": 519.6613421440125,
+          "per_second": 635.0289568173188
+        },
+        "insert": {
+          "count": 10000000,
+          "seconds": 948.2912318706512,
+          "per_second": 10545.283625868238
+        },
+        "delete": {
+          "count": 5400000,
+          "seconds": 689.3275713920593,
+          "per_second": 7833.721185843467
+        },
+        "replace": {
+          "count": 0,
+          "seconds": 0.0,
+          "per_second": null
+        }
+      },
+      "elapsed_seconds": 2328.548182487488
+    },
+    "verified_summary": {
+      "recall10": 0.930141515151515,
+      "search_qps": 635.0289568173188,
+      "search_seconds": 519.6613421440125,
+      "step_seconds": 2157.280145406723,
+      "benchmark_wall_seconds": 2158.36,
+      "peak_summed_rss_bytes": 8016285696,
+      "peak_sample": {
+        "phase": "run.rss.jsonl",
+        "elapsed_seconds": 1759.196803259,
+        "summed_process_rss_bytes": 8016285696,
+        "peak_sampled_rss_bytes": 8016285696,
+        "rss_by_pid": {
+          "2": 58515456,
+          "12": 4202496,
+          "13": 157380608,
+          "15": 7796187136
+        }
+      },
+      "child_hwm_kib": 7615512,
+      "per_checkpoint_recall": [
+        0.9761799999999999,
+        0.96182,
+        0.93417,
+        0.93865,
+        0.9461700000000001,
+        0.91712,
+        0.91485,
+        0.92688,
+        0.92164,
+        0.9164899999999999,
+        0.91136,
+        0.9259600000000001,
+        0.92045,
+        0.9243,
+        0.94115,
+        0.92233,
+        0.92506,
+        0.91494,
+        0.91266,
+        0.91204,
+        0.91089,
+        0.93273,
+        0.93475,
+        0.93549,
+        0.93469,
+        0.9343199999999999,
+        0.9371499999999999,
+        0.93659,
+        0.9358599999999999,
+        0.93423,
+        0.93395,
+        0.9332900000000001,
+        0.93651
+      ],
+      "eligibility": {
+        "search_checkpoints": 33,
+        "queries": 330000,
+        "returned_ids": 3300000,
+        "all_returned_ids_live_and_unique": true
+      },
+      "complete_steps": 75,
+      "score_meets_delete_target": true,
+      "samples": 1,
+      "adapter_source_hashes_match": true
+    },
+    "artifact_manifest": {
+      "export.log": {
+        "bytes": 271780,
+        "sha256": "1a36628770cfd36ac4d0c01330b8616dadd89ddeaaa258b79bce4bdd5302ae9b"
+      },
+      "export.rss.jsonl": {
+        "bytes": 98749,
+        "sha256": "37e7388bd0a97465fae7405bbd704e89fc7f219c6039c5509482d72e474a84b2"
+      },
+      "ground-truth.log": {
+        "bytes": 120,
+        "sha256": "846217dfe6ccde3a1d4615cc1add18297587bba57b07dbcfb81f54f939b7ce99"
+      },
+      "ground-truth.rss.jsonl": {
+        "bytes": 5034,
+        "sha256": "849280515387b3fe1553d08a7e5fc6c7c71c7f82448ab868348b2f502dbb1b14"
+      },
+      "gt-input-manifest.json": {
+        "bytes": 9708,
+        "sha256": "f811dc6cd0f29112a5833bab4b0afa03d64169e32f7d8289c74db599ff9446c8"
+      },
+      "prepare.log": {
+        "bytes": 212,
+        "sha256": "cde94f151e99309d1790cf8d5cd6e22d9dd5d92eb41b5444fa7354b7f3dd2431"
+      },
+      "prepare.rss.jsonl": {
+        "bytes": 162,
+        "sha256": "afed77ea37fe46759e2743f56fe7e87385ea0cdc948461210d11bfa35d0d4196"
+      },
+      "receipt.json": {
+        "bytes": 1675,
+        "sha256": "096eee76ee5eaac43d2881d8ef8c1355c236f2f22c3de23b2e16e94e70350d27"
+      },
+      "results.csv": {
+        "bytes": 268,
+        "sha256": "72d4a45965656c3783590f1285afcb0ef4a72e6db9dbd0fd21606edebe8767a1"
+      },
+      "run.log": {
+        "bytes": 3924,
+        "sha256": "f2d13a89593dac32829c604d6c0c1e1b570c248414d4128ee24b9bf177c525df"
+      },
+      "run.rss.jsonl": {
+        "bytes": 1635036,
+        "sha256": "2d2fdd57481f20775c899a851ac300f6340301dbde07366e67cb6c3da15c1b73"
+      },
+      "time.txt": {
+        "bytes": 887,
+        "sha256": "d18735535397c038570a74749472657952bbec3f33dadb00564493f3d380b7e5"
+      },
+      "raw-results/neurips23/streaming/delete_runbook.yaml/msturing-10M-clustered/10/hms/euclidean_L_64_R_32_T_8_ef_1024_rerank_1024.hdf5": {
+        "bytes": 13220627,
+        "sha256": "207da4ee12a3014910c85f295869e24d88e7557359c74632a397d87b79efbee1"
+      }
+    },
+    "ground_truth_inputs": {
+      "dataset": "msturing-10M-clustered",
+      "runbook_sha256": "c146fb5cde1920c90a86e045d534f776d9541747669b0a2fe915eac4a50fb48e",
+      "files": [
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step2.gt100",
+          "file": "step2.gt100",
+          "bytes": 8000008,
+          "sha256": "7091c8d305075309c956e5f5cea6ae9bf081c516a84f055b1d8220d91ec356f8"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step4.gt100",
+          "file": "step4.gt100",
+          "bytes": 8000008,
+          "sha256": "e3a473eb1b10eae6315aabea63e3502ce466fbedcd376360c7d21997424b6bdc"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step6.gt100",
+          "file": "step6.gt100",
+          "bytes": 8000008,
+          "sha256": "2b0233574fa9e4ef553ab643f0ccf1646639a7dbf30f35316b0549451f8beb91"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step8.gt100",
+          "file": "step8.gt100",
+          "bytes": 8000008,
+          "sha256": "5b6a54a6629a358ab3aff1b6b401a29f3a03955b14228944d49e44811f4ae5d5"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step10.gt100",
+          "file": "step10.gt100",
+          "bytes": 8000008,
+          "sha256": "c8860679e37c49b5b3cf57c651e32ec2943d95e3f6105f929ed7aa37716ec4e9"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step12.gt100",
+          "file": "step12.gt100",
+          "bytes": 8000008,
+          "sha256": "5077083d95f21a6bc90d5374e17f0ecd689abc20792d947d561eeda4fe766cc1"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step15.gt100",
+          "file": "step15.gt100",
+          "bytes": 8000008,
+          "sha256": "ef2fb70ff17880324be2a4a16eaacbe28f40436c8d5277c6867e13b0c4ea75ae"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step17.gt100",
+          "file": "step17.gt100",
+          "bytes": 8000008,
+          "sha256": "1a753358776a49705e332172ca237f923d431390bbf05ccde1c5e2725d7ccc1f"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step20.gt100",
+          "file": "step20.gt100",
+          "bytes": 8000008,
+          "sha256": "ab51a85629c87c1f1ffc21184e8a95f961cbf62967291ba00019ed82e763a734"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step22.gt100",
+          "file": "step22.gt100",
+          "bytes": 8000008,
+          "sha256": "4a8f13afa5a186de25df0655d3d2eab672522f2f7bb502627b733dde1720250b"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step24.gt100",
+          "file": "step24.gt100",
+          "bytes": 8000008,
+          "sha256": "37502780ef98da119d9e4c99e1d3b62c2af2c7a25e1eba05d01acbb946e99f69"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step26.gt100",
+          "file": "step26.gt100",
+          "bytes": 8000008,
+          "sha256": "67f0ab80f95fca94dab6dfb705c43f183e1c0a6a4a01f8e08bf8ce7d572ad9a3"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step29.gt100",
+          "file": "step29.gt100",
+          "bytes": 8000008,
+          "sha256": "45a26eeefa6d4ba53ecd197fd14f811d62acd92430aeb3183b721fb01182a87e"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step31.gt100",
+          "file": "step31.gt100",
+          "bytes": 8000008,
+          "sha256": "8df491481a6c7360161a8cba87aa8ed8d95c8ba0e8675320b28c48938cc1a1e8"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step34.gt100",
+          "file": "step34.gt100",
+          "bytes": 8000008,
+          "sha256": "df9b6b4a2c2bfaceb12a37da808a8c28a71662421d19ebc56bdc293e263861fb"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step36.gt100",
+          "file": "step36.gt100",
+          "bytes": 8000008,
+          "sha256": "560dcd7942c4aa95160fa52e0eb88a6080f55e94fc815588715442eb1e7b65da"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step39.gt100",
+          "file": "step39.gt100",
+          "bytes": 8000008,
+          "sha256": "00aa5dadcfd2f502ab1e630ccd8ce24b9a94786be0467352dec27d13a515bd5d"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step41.gt100",
+          "file": "step41.gt100",
+          "bytes": 8000008,
+          "sha256": "489e507fa8efe4f23d6640e2c6410474d53da37af49090aded7e284df981142e"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step43.gt100",
+          "file": "step43.gt100",
+          "bytes": 8000008,
+          "sha256": "cf7fcf0774b420e188c2d93f3c0e6d66785f07e3d111272ee38be4837637a4b8"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step45.gt100",
+          "file": "step45.gt100",
+          "bytes": 8000008,
+          "sha256": "4e44c9e002daa879e94629933290949ca715eaea6b735a368779227ca08e5b2f"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step47.gt100",
+          "file": "step47.gt100",
+          "bytes": 8000008,
+          "sha256": "3556775171347f880e9b75bea750aeeb9d94917ad8e685740c7512ff99583089"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step50.gt100",
+          "file": "step50.gt100",
+          "bytes": 8000008,
+          "sha256": "50450a7cba6be58152d5099ffad91e9e6a029111925478388b098bd107e4f1a7"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step52.gt100",
+          "file": "step52.gt100",
+          "bytes": 8000008,
+          "sha256": "f1e956647c496cece84e26028352d1dba8f0bb3b28006646d20955ec61eb51ad"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step54.gt100",
+          "file": "step54.gt100",
+          "bytes": 8000008,
+          "sha256": "c24fb162f97153caf5d20f0c4de8dd2e52f2f8493581b55f3fbf4baa6746e2b5"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step56.gt100",
+          "file": "step56.gt100",
+          "bytes": 8000008,
+          "sha256": "2d1115b5b175d8fc59972ab4a3cf1a39c71fb942fe702413d2755d1f5ed14c86"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step58.gt100",
+          "file": "step58.gt100",
+          "bytes": 8000008,
+          "sha256": "591625119fc8be41b630fd769cc2668ad618d46b35453c806f5b0238517d8405"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step61.gt100",
+          "file": "step61.gt100",
+          "bytes": 8000008,
+          "sha256": "740341fe5122e42f67d6b0c6839a5fdae4e73d59840d8d7f118af9bca07316e8"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step63.gt100",
+          "file": "step63.gt100",
+          "bytes": 8000008,
+          "sha256": "aeeb6bc3973c3a9014980828eb7e895a93e3883a837042cb2d5c694a8557c639"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step65.gt100",
+          "file": "step65.gt100",
+          "bytes": 8000008,
+          "sha256": "053e0009722d637203f2c657a8cf2e909af62b8f99c3ff66841db561e5b4dd8b"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step67.gt100",
+          "file": "step67.gt100",
+          "bytes": 8000008,
+          "sha256": "2a73a70b5a0e8bda0b6eddd649a8826c94e45670bff37916cee37215e6e2cb0b"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step70.gt100",
+          "file": "step70.gt100",
+          "bytes": 8000008,
+          "sha256": "534469c6e05ea07f3097793e277c9766e36e48d3690c28259c5f84a80df7fb17"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step72.gt100",
+          "file": "step72.gt100",
+          "bytes": 8000008,
+          "sha256": "59e155ce08da3b4332bb7f42f0a15dc0622a5dcfe10dfe85a3f996dce7050155"
+        },
+        {
+          "url": "https://comp21storage.z5.web.core.windows.net/comp23/clustered_data/msturing-10M-clustered/delete_runbook.yaml/step75.gt100",
+          "file": "step75.gt100",
+          "bytes": 8000008,
+          "sha256": "c78fc2f24a63b7db567e5554e08480b260e2acf5b1c9a051beb0f7cac735052c"
+        }
+      ]
+    },
+    "run_log": "file data/MSTuring-10M-clustered/testQuery10K.fbin already exists\nfile data/MSTuring-10M-clustered/clu_msturing10M_gt100 already exists\nfile data/MSTuring-10M-clustered/msturing-10M-clustered.fbin already exists\n2026-10-22 17:42:03,312 - annb - INFO - running only hms\n2026-10-22 17:42:03,312 - annb - INFO - Order: [Definition(algorithm='hms', constructor='HMS', module='neurips23.streaming.hms.hms', docker_tag='neurips23-streaming-hms', docker_volumes=[], arguments=['euclidean', {'L': 64, 'R': 32, 'T': 8}], query_argument_groups=[[{'ef': 1024, 'rerank': 1024}]], disabled=False)]\nRW Namespace(dataset='msturing-10M-clustered', count=10, definitions='algos-2021.yaml', algorithm='hms', docker_tag=None, list_algorithms=False, force=False, rebuild=False, runs=5, timeout=43200, max_n_algorithms=-1, power_capture='', t3=False, nodocker=True, upload_index=False, download_index=False, blob_prefix=None, sas_string=None, private_query=False, neurips23track='streaming', runbook_path='/bab/neurips23/runbooks/delete_runbook.yaml')\n['euclidean', {'L': 64, 'R': 32, 'T': 8}]\nTrying to instantiate neurips23.streaming.hms.hms.HMS(['euclidean', {'L': 64, 'R': 32, 'T': 8}])\nRunning hms on msturing-10M-clustered\nAlgorithm set up\nBuilt index in 0.004002094268798828\nIndex memory footprint:  21004.0\nStarting query\nRunning query argument group 1 of 1...\nGot 10000 queries\nStep 1 took 14.530032873153687s.\nStep 2 took 1.8172094821929932s.\nStep 3 took 6.422560214996338s.\nStep 4 took 11.657552719116211s.\nStep 5 took 66.2867431640625s.\nStep 6 took 2.694638252258301s.\nStep 7 took 0.018311500549316406s.\nStep 8 took 3.8738977909088135s.\nStep 9 took 6.996246576309204s.\nStep 10 took 11.267822742462158s.\nStep 11 took 17.09279727935791s.\nStep 12 took 14.484625339508057s.\nStep 13 took 186.8781054019928s.\nStep 14 took 0.06872797012329102s.\nStep 15 took 3.777456283569336s.\nStep 16 took 14.932797908782959s.\nStep 17 took 16.033874988555908s.\nStep 18 took 0.023186922073364258s.\nStep 19 took 17.34488821029663s.\nStep 20 took 16.224850177764893s.\nStep 21 took 13.044691324234009s.\nStep 22 took 16.697070360183716s.\nStep 23 took 19.294806718826294s.\nStep 24 took 16.674591779708862s.\nStep 25 took 355.38393688201904s.\nStep 26 took 3.0413756370544434s.\nStep 27 took 7.360885381698608s.\nStep 28 took 0.22803401947021484s.\nStep 29 took 17.033053874969482s.\nStep 30 took 17.682680130004883s.\nStep 31 took 17.87684655189514s.\nStep 32 took 9.96731686592102s.\nStep 33 took 295.93124771118164s.\nStep 34 took 2.507885217666626s.\nStep 35 took 5.752130031585693s.\nStep 36 took 10.569495677947998s.\nStep 37 took 14.498429536819458s.\nStep 38 took 0.0517728328704834s.\nStep 39 took 17.026041269302368s.\nStep 40 took 12.405400276184082s.\nStep 41 took 17.0949068069458s.\nStep 42 took 9.596136093139648s.\nStep 43 took 16.809181690216064s.\nStep 44 took 7.4240803718566895s.\nStep 45 took 14.982637166976929s.\nStep 46 took 11.14736008644104s.\nStep 47 took 16.527549982070923s.\nStep 48 took 7.997639179229736s.\nStep 49 took 392.4519968032837s.\nStep 50 took 3.355586290359497s.\nStep 51 took 6.826700925827026s.\nStep 52 took 14.468343734741211s.\nStep 53 took 6.480403184890747s.\nStep 54 took 15.198375701904297s.\nStep 55 took 8.450116872787476s.\nStep 56 took 14.257458686828613s.\nStep 57 took 13.808946371078491s.\nStep 58 took 17.488544464111328s.\nStep 59 took 12.585000991821289s.\nStep 60 took 0.3231351375579834s.\nStep 61 took 47.074074506759644s.\nStep 62 took 18.849979400634766s.\nStep 63 took 29.23384737968445s.\nStep 64 took 8.795439958572388s.\nStep 65 took 27.99833369255066s.\nStep 66 took 15.133581399917603s.\nStep 67 took 27.168263912200928s.\nStep 68 took 12.537348985671997s.\nStep 69 took 0.02836465835571289s.\nStep 70 took 22.71185803413391s.\nStep 71 took 10.559035778045654s.\nStep 72 took 24.257216215133667s.\nStep 73 took 12.225013494491577s.\nStep 74 took 0.20279383659362793s.\nStep 75 took 27.776875734329224s.\nstart store results\nend store results\n",
+    "time_output": "\tCommand being timed: \"python run.py --nodocker --neurips23track streaming --algorithm hms --dataset msturing-10M-clustered --runbook_path /bab/neurips23/runbooks/delete_runbook.yaml\"\n\tUser time (seconds): 15871.64\n\tSystem time (seconds): 202.91\n\tPercent of CPU this job got: 744%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 35:58.36\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 7615512\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 0\n\tMinor (reclaiming a frame) page faults: 0\n\tVoluntary context switches: 3484696\n\tInvoluntary context switches: 0\n\tSwaps: 0\n\tFile system inputs: 0\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n",
+    "rss_trace": {
+      "file": "evidence/delete-bounded-io.rss.jsonl.gz",
+      "compressed_sha256": "09e9e27b4cf939e0cd0c3afb44f0d942fe5cf1af249a33671c7f2883c93dca88",
+      "uncompressed_sha256": "2d2fdd57481f20775c899a851ac300f6340301dbde07366e67cb6c3da15c1b73",
+      "sampling_seconds": 0.25
+    }
+  },
+  "costs": {
+    "as_of_utc": "2026-10-22 18:21:47.709363+00:00",
+    "task_app_sum_usd": "1.70700333",
+    "all_bigann_sum_usd": "7.04526986",
+    "active_owned_reservations_usd": "0",
+    "note": "Post-completion reported spend, subject to billing revisions; all-bigann includes unrelated and historical apps.",
+    "rows": [
+      {
+        "object_id": "ap-6wjezD32AFdZFBqIayXedL",
+        "description": "hms-bigann",
+        "cost": "0.00140807"
+      },
+      {
+        "object_id": "ap-8Wi7KmyuKjUQbRHJa43THN",
+        "description": "hms-bigann",
+        "cost": "3.24242035"
+      },
+      {
+        "object_id": "ap-9EUwf9vaBWKpnq95qEl8sn",
+        "description": "hms-bigann",
+        "cost": "0.54993484"
+      },
+      {
+        "object_id": "ap-9biw0havHdKbMZKK2e9pMZ",
+        "description": "hms-bigann",
+        "cost": "0.01769583"
+      },
+      {
+        "object_id": "ap-FdJw5rT3CwiNmVlxXc39Gc",
+        "description": "hms-bigann",
+        "cost": "0.01104747"
+      },
+      {
+        "object_id": "ap-GbZS2pyQa9lDA7XwsPyGbk",
+        "description": "hms-bigann",
+        "cost": "0.02384889"
+      },
+      {
+        "object_id": "ap-GvdOvw1FDr19nU0xvQqzye",
+        "description": "hms-bigann",
+        "cost": "0.69677523"
+      },
+      {
+        "object_id": "ap-HttrZXH9u25s7g2eLhSXlV",
+        "description": "hms-bigann",
+        "cost": "0.23611403"
+      },
+      {
+        "object_id": "ap-RIL00gRfxaHAhoKAXVoHsT",
+        "description": "hms-bigann",
+        "cost": "0.39457925"
+      },
+      {
+        "object_id": "ap-RYJ8JbAxbmXWZbW2zC7QL5",
+        "description": "hms-bigann",
+        "cost": "0.86836227"
+      },
+      {
+        "object_id": "ap-VT6i4URWSlHQexkRlBBarW",
+        "description": "hms-bigann",
+        "cost": "0.51940666"
+      },
+      {
+        "object_id": "ap-mwhHcbuw9UfBgK8VV0TsZw",
+        "description": "hms-bigann",
+        "cost": "0.00178624"
+      },
+      {
+        "object_id": "ap-nYwftjK5Zc7kjBKLOq5Idg",
+        "description": "hms-bigann",
+        "cost": "0.18883314"
+      },
+      {
+        "object_id": "ap-uOmsTYZABiTPHJcmVQoNGl",
+        "description": "hms-bigann",
+        "cost": "0.29305759"
+      }
+    ]
+  },
+  "reproduction": {
+    "official_delete": "HMS_COMMIT=cc5dede4c0de39a13ba0a63c8f5fbf20d00fe038 HMS_IMAGE_ID=im-b2vpMMYmHN4fYGbms2isdz modal run --detach neurips23/streaming/hms/modal_stream.py --mode delete --build '{\"R\":32,\"L\":64,\"T\":8}' --search '{\"ef\":1024,\"rerank\":1024}' --run-id <new-32-character-hex-ID>",
+    "warning": "Recorded command only; no additional job is needed or launched. Check cost reservation before any future work."
+  }
+}
