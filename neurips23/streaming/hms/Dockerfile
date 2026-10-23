@@ -6,7 +6,7 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN pip3 install maturin
 
 # Holographic Memory, pinned to the merged-consolidation candidate (writerslogic/holographic-memory#271).
-ARG HMS_COMMIT=c1ec45d485aeeee94c7e6d1397cb6c099b32d9f9
+ARG HMS_COMMIT=c8a8a7219596bd0257fbaf7391a8bfa77947f32c
 RUN GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/writerslogic/holographic-memory.git /home/app/holographic-memory \
     && cd /home/app/holographic-memory && git checkout ${HMS_COMMIT} \
     && maturin build --release --features python -i python3 -o /home/app/wheels \
