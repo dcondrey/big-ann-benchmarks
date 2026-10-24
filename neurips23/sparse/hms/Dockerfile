@@ -7,7 +7,7 @@ RUN pip3 install maturin
 
 # Holographic Memory, pinned to the learned-sparse index commit. The image is built on the
 # machine that runs it, so the wheel targets that CPU.
-ARG HMS_COMMIT=6f1dd8bf11231cfd64e50d13ef99bff110814af4
+ARG HMS_COMMIT=f5edf7cecb211135d1755efc994afeab3ff7c51e
 RUN GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/writerslogic/holographic-memory.git /home/app/holographic-memory \
     && cd /home/app/holographic-memory && git checkout ${HMS_COMMIT} \
     && RUSTFLAGS="-C target-cpu=native" maturin build --release --features python -i python3 -o /home/app/wheels \
