@@ -1,0 +1,26 @@
+random-xs:
+    hms:
+      docker-tag: neurips23-ood-hms
+      module: neurips23.ood.hms.hms
+      constructor: HMS
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"degree": 32, "build_ef": 100, "learn_M": 0, "threads": 8}]
+          query-args: |
+            [{"ef": 32}, {"ef": 64}, {"ef": 128}]
+text2image-10M:
+    hms:
+      docker-tag: neurips23-ood-hms
+      module: neurips23.ood.hms.hms
+      constructor: HMS
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+            [{"degree": 32, "build_ef": 200, "learn_M": 3, "training_ef": 200,
+              "training_neighbors": 100, "projected_degree": 16, "threads": 8}]
+          query-args: |
+            [{"ef": 48}, {"ef": 64}, {"ef": 80}, {"ef": 96}, {"ef": 112},
+             {"ef": 128}, {"ef": 160}, {"ef": 192}, {"ef": 256}]

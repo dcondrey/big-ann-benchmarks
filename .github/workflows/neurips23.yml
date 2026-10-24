@@ -45,6 +45,9 @@ jobs:
           - algorithm: vamana
             dataset: random-xs
             track: ood
+          - algorithm: hms
+            dataset: random-xs
+            track: ood
           - algorithm: cufe
             dataset: random-xs
             track: ood
