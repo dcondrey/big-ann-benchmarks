@@ -24,6 +24,9 @@ jobs:
           - algorithm: parlayivf
             dataset: random-filter-s
             track: filter
+          - algorithm: hms
+            dataset: random-filter-s
+            track: filter
           - algorithm: linscan
             dataset: sparse-small
             track: sparse
