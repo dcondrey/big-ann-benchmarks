@@ -30,6 +30,9 @@ jobs:
           - algorithm: nle
             dataset: sparse-small
             track: sparse
+          - algorithm: hms
+            dataset: sparse-small
+            track: sparse
           - algorithm: diskann
             dataset: random-xs
             track: streaming

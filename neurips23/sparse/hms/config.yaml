@@ -1,0 +1,53 @@
+sparse-small:
+  hms:
+    docker-tag: neurips23-sparse-hms
+    module: neurips23.sparse.hms.hms
+    constructor: HmsSparse
+    base-args: ["@metric"]
+    run-groups:
+      base:
+        args: |
+          [{"postings": 1000, "block_fraction": 0.2, "energy": 0.5}]
+        query-args: |
+          [
+          {"cut": 3, "heap_factor": 1.1},
+          {"cut": 5, "heap_factor": 1.2}
+          ]
+sparse-1M:
+  hms:
+    docker-tag: neurips23-sparse-hms
+    module: neurips23.sparse.hms.hms
+    constructor: HmsSparse
+    base-args: ["@metric"]
+    run-groups:
+      base:
+        args: |
+          [{"postings": 2000, "block_fraction": 0.2, "energy": 0.5}]
+        query-args: |
+          [
+          {"cut": 3, "heap_factor": 1.1},
+          {"cut": 4, "heap_factor": 1.1},
+          {"cut": 5, "heap_factor": 1.2}
+          ]
+sparse-full:
+  hms:
+    docker-tag: neurips23-sparse-hms
+    module: neurips23.sparse.hms.hms
+    constructor: HmsSparse
+    base-args: ["@metric"]
+    run-groups:
+      base:
+        args: |
+          [{"postings": 5000, "block_fraction": 0.2, "energy": 0.5}]
+        query-args: |
+          [
+          {"cut": 3, "heap_factor": 1.05},
+          {"cut": 3, "heap_factor": 1.1},
+          {"cut": 4, "heap_factor": 1.05},
+          {"cut": 3, "heap_factor": 1.2},
+          {"cut": 4, "heap_factor": 1.1},
+          {"cut": 4, "heap_factor": 1.2},
+          {"cut": 5, "heap_factor": 1.1},
+          {"cut": 5, "heap_factor": 1.2},
+          {"cut": 5, "heap_factor": 1.3}
+          ]
